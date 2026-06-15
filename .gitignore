@@ -1,0 +1,49 @@
+.DS_Store
+
+# Local credentials and runtime state
+.env
+.env.*
+!.env.example
+!.env.testflight.example
+*.p8
+.asc/
+.revyl/.dev-status.json
+**/.revyl/device-sessions.json
+.revyl/dev-sessions/
+**/.revyl/dev-sessions/
+
+# iOS
+DerivedData/
+build/
+*.ipa
+*.xcarchive/
+*.mobileprovision
+apps/ios-sweep-alert/.asc/
+*.xcuserstate
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+
+# Android / Gradle
+.gradle/
+local.properties
+captures/
+*.apk
+*.aab
+apps/android-sweep-alert/app/build/
+apps/android-sweep-alert/build/
+
+# Node / Convex
+node_modules/
+
+# Python
+__pycache__/
+.venv/
+*.pyc
+
+# Agent outputs
+artifacts/
+reports/
+*.log
+*.png
+!apps/ios-sweep-alert/SweepAlertSwift/Assets.xcassets/AppIcon.appiconset/sweepalert-app-icon.png
+*.mp4

@@ -1,0 +1,471 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A1000001 /* SweepAlertSwiftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000001 /* SweepAlertSwiftApp.swift */; };
+		A1000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000002 /* ContentView.swift */; };
+		A1000003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2000003 /* Assets.xcassets */; };
+		A1000004 /* sweeping.json in Resources */ = {isa = PBXBuildFile; fileRef = A2000005 /* sweeping.json */; };
+		A1000005 /* Auth0.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2000006 /* Auth0.plist */; };
+		A1000006 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000007 /* AppConfiguration.swift */; };
+		A1000007 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000008 /* AuthenticationService.swift */; };
+		A1000008 /* ConvexService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000009 /* ConvexService.swift */; };
+		A1000009 /* Auth0 in Frameworks */ = {isa = PBXBuildFile; productRef = A1100001 /* Auth0 */; };
+		A1000010 /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000011 /* PushNotificationService.swift */; };
+		B1000001 /* SweepAlertWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2000001 /* SweepAlertWidget.swift */; };
+		B1000002 /* SweepAlertWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B2000003 /* SweepAlertWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B5600001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A8000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B5000001;
+			remoteInfo = SweepAlertWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B6000003 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B1000002 /* SweepAlertWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		A2000001 /* SweepAlertSwiftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SweepAlertSwiftApp.swift; sourceTree = "<group>"; };
+		A2000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A2000003 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A2000004 /* SweepAlertSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SweepAlertSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2000005 /* sweeping.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sweeping.json; sourceTree = "<group>"; };
+		A2000006 /* Auth0.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Auth0.plist; sourceTree = "<group>"; };
+		A2000007 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		A2000008 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		A2000009 /* ConvexService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvexService.swift; sourceTree = "<group>"; };
+		A2000010 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2000011 /* PushNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
+		A2000012 /* SweepAlertSwift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SweepAlertSwift.entitlements; sourceTree = "<group>"; };
+		B2000001 /* SweepAlertWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SweepAlertWidget.swift; sourceTree = "<group>"; };
+		B2000002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2000003 /* SweepAlertWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SweepAlertWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A3000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000009 /* Auth0 in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B3000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A4000001 = {
+			isa = PBXGroup;
+			children = (
+				A4000002 /* SweepAlertSwift */,
+				B4000001 /* SweepAlertWidget */,
+				A4000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A4000002 /* SweepAlertSwift */ = {
+			isa = PBXGroup;
+			children = (
+				A2000001 /* SweepAlertSwiftApp.swift */,
+				A2000007 /* AppConfiguration.swift */,
+				A2000008 /* AuthenticationService.swift */,
+				A2000009 /* ConvexService.swift */,
+				A2000011 /* PushNotificationService.swift */,
+				A2000002 /* ContentView.swift */,
+				A2000012 /* SweepAlertSwift.entitlements */,
+				A2000010 /* Info.plist */,
+				A2000006 /* Auth0.plist */,
+				A2000005 /* sweeping.json */,
+				A2000003 /* Assets.xcassets */,
+			);
+			path = SweepAlertSwift;
+			sourceTree = "<group>";
+		};
+		A4000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A2000004 /* SweepAlertSwift.app */,
+				B2000003 /* SweepAlertWidget.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B4000001 /* SweepAlertWidget */ = {
+			isa = PBXGroup;
+			children = (
+				B2000001 /* SweepAlertWidget.swift */,
+				B2000002 /* Info.plist */,
+			);
+			path = SweepAlertWidget;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A5000001 /* SweepAlertSwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A7000003 /* Build configuration list for PBXNativeTarget "SweepAlertSwift" */;
+			buildPhases = (
+				A6000001 /* Sources */,
+				A3000001 /* Frameworks */,
+				A6000002 /* Resources */,
+				B6000003 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B5500001 /* PBXTargetDependency */,
+			);
+			name = SweepAlertSwift;
+			packageProductDependencies = (
+				A1100001 /* Auth0 */,
+			);
+			productName = SweepAlertSwift;
+			productReference = A2000004 /* SweepAlertSwift.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B5000001 /* SweepAlertWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B7000003 /* Build configuration list for PBXNativeTarget "SweepAlertWidget" */;
+			buildPhases = (
+				B6000001 /* Sources */,
+				B3000001 /* Frameworks */,
+				B6000002 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SweepAlertWidget;
+			packageProductDependencies = (
+			);
+			productName = SweepAlertWidget;
+			productReference = B2000003 /* SweepAlertWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A8000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					A5000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					B5000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = A7000001 /* Build configuration list for PBXProject "SweepAlertSwift" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A4000001;
+			packageReferences = (
+				A1200001 /* XCRemoteSwiftPackageReference "Auth0.swift" */,
+			);
+			productRefGroup = A4000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A5000001 /* SweepAlertSwift */,
+				B5000001 /* SweepAlertWidget */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A6000002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000003 /* Assets.xcassets in Resources */,
+				A1000004 /* sweeping.json in Resources */,
+				A1000005 /* Auth0.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6000002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A6000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000001 /* SweepAlertSwiftApp.swift in Sources */,
+				A1000006 /* AppConfiguration.swift in Sources */,
+				A1000007 /* AuthenticationService.swift in Sources */,
+				A1000008 /* ConvexService.swift in Sources */,
+				A1000010 /* PushNotificationService.swift in Sources */,
+				A1000002 /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1000001 /* SweepAlertWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B5500001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B5000001 /* SweepAlertWidget */;
+			targetProxy = B5600001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A9000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A9000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A9000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				APS_ENVIRONMENT = development;
+				CODE_SIGN_ENTITLEMENTS = SweepAlertSwift/SweepAlertSwift.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SweepAlertSwift/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "SweepAlert uses your location to show nearby parking rules.";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.revyl.sweepalert.swift;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A9000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				APS_ENVIRONMENT = production;
+				CODE_SIGN_ENTITLEMENTS = SweepAlertSwift/SweepAlertSwift.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SweepAlertSwift/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "SweepAlert uses your location to show nearby parking rules.";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.revyl.sweepalert.swift;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B9000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_DEBUG_DYLIB = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SweepAlertWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.revyl.sweepalert.swift.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B9000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_DEBUG_DYLIB = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SweepAlertWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ai.revyl.sweepalert.swift.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A7000001 /* Build configuration list for PBXProject "SweepAlertSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9000001 /* Debug */,
+				A9000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A7000003 /* Build configuration list for PBXNativeTarget "SweepAlertSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9000003 /* Debug */,
+				A9000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B7000003 /* Build configuration list for PBXNativeTarget "SweepAlertWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9000001 /* Debug */,
+				B9000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A1200001 /* XCRemoteSwiftPackageReference "Auth0.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/auth0/Auth0.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A1100001 /* Auth0 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1200001 /* XCRemoteSwiftPackageReference "Auth0.swift" */;
+			productName = Auth0;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+	};
+	rootObject = A8000001 /* Project object */;
+}

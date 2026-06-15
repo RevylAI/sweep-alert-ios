@@ -1,0 +1,16 @@
+project:
+  name: sweep-alert-ios
+
+build:
+  system: Xcode
+  platforms:
+    ios:
+      app_id: "<revyl-ios-app-id>"
+      command: xcodebuild -project SweepAlertSwift.xcodeproj -scheme SweepAlertSwift -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' -derivedDataPath build
+      output: build/Build/Products/Debug-iphonesimulator/SweepAlertSwift.app
+      scheme: SweepAlertSwift
+
+defaults:
+  open_browser: false
+  timeout: 1800
+
