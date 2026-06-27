@@ -26,20 +26,28 @@ if [[ -n "$(git status --porcelain)" ]]; then
   exit 2
 fi
 
-timestamp="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+if command -v openssl >/dev/null 2>&1; then
+  smoke_hash="$(openssl rand -hex 12)"
+elif command -v uuidgen >/dev/null 2>&1; then
+  smoke_hash="$(uuidgen | tr '[:upper:]' '[:lower:]' | tr -d '-')"
+else
+  smoke_hash="$(printf '%s-%s-%s' "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" "$RANDOM" "$$" | git hash-object --stdin | cut -c1-24)"
+fi
+
 mkdir -p "$(dirname "$TARGET_FILE")"
 
 cat >"$TARGET_FILE" <<EOF
 # Revyl PR Automation Smoke Trigger
 
-Last trigger: $timestamp
+Smoke hash: $smoke_hash
 
 This file is intentionally updated by \`scripts/revyl-pr-automation-smoke.sh\`
-to create a tiny commit that re-runs Revyl GitHub PR automation.
+with a random hash to create a tiny commit that re-runs Revyl GitHub PR
+automation.
 EOF
 
 git add "$TARGET_FILE"
 git commit -m "$COMMIT_MESSAGE"
 git push "$REMOTE" "$BRANCH"
 
-echo "Triggered Revyl PR automation with $TARGET_FILE at $timestamp."
+echo "Triggered Revyl PR automation with $TARGET_FILE hash $smoke_hash."
