@@ -1,6 +1,7 @@
 # Revyl PR Automation Smoke Trigger
 
-Last trigger: 2026-06-27T04:36:10Z
+Smoke hash: 8735a3855f0b06565cb92266
 
 This file is intentionally updated by `scripts/revyl-pr-automation-smoke.sh`
-to create a tiny commit that re-runs Revyl GitHub PR automation.
+with a random hash to create a tiny commit that re-runs Revyl GitHub PR
+automation.
