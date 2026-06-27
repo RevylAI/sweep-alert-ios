@@ -5,7 +5,7 @@ pr_review:
   label_filters: []
   actions:
     preview_link: true
-    proof_of_changes: false
+    proof_of_changes: true
     checks: []
     system_prompt: ""
     workflows: []
