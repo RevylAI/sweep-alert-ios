@@ -5,7 +5,8 @@
   "scripts": {
     "convex:dev": "convex dev",
     "convex:deploy": "convex deploy",
-    "ios:testflight": "bash scripts/ios-testflight.sh"
+    "ios:testflight": "bash scripts/ios-testflight.sh",
+    "revyl:pr-smoke": "bash scripts/revyl-pr-automation-smoke.sh"
   },
   "dependencies": {
     "convex": "^1.38.0"
