@@ -1,0 +1,22 @@
+pr_review:
+  enabled: true
+  skip_drafts: true
+  path_filters: []
+  label_filters: []
+  actions:
+    preview_link: true
+    proof_of_changes: false
+    checks: []
+    system_prompt: ""
+    workflows: []
+  builds:
+    ios:
+      enabled: true
+      framework: native_ios
+      app: "SweepAlert Swift"
+      root_dir: apps/ios-sweep-alert
+      use_existing_ci: false
+      build_command: |
+        xcodebuild -project SweepAlertSwift.xcodeproj -scheme SweepAlertSwift -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' -derivedDataPath build
+      artifact_path: build/Build/Products/Debug-iphonesimulator/SweepAlertSwift.app
+      env: []

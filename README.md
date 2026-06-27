@@ -25,6 +25,7 @@ agent edits repo -> Revyl remote iOS build -> Revyl simulator validation -> patc
 ```
 
 The agent does not need a full macOS sandbox. It needs this repo, Revyl credentials, and the commands in `AGENTS.md`.
+GitHub PR previews are managed by the repo-level `.revyl/config.yaml`.
 
 ## Setup
 
@@ -90,4 +91,3 @@ npm run ios:testflight
 ```
 
 No private keys or production credentials should be committed.
-
