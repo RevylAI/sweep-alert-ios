@@ -1643,11 +1643,11 @@ struct SignedOutPanel: View {
                 VStack(alignment: .leading, spacing: 3) {
                     Text("Create your car crew")
                         .font(.system(size: 18, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(.primary)
 
                     Text("Sign in to save cars, share invite links, and sync alerts.")
                         .font(.system(size: 13, weight: .medium, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }
@@ -1679,7 +1679,7 @@ struct SignedOutPanel: View {
                 Button(action: onOpenSettings) {
                     Image(systemName: "gearshape.fill")
                         .font(.system(size: 15, weight: .bold))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(.primary)
                         .frame(width: 46, height: 46)
                         .background(Color(.secondarySystemBackground))
                         .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
@@ -1904,7 +1904,7 @@ struct SettingsScreen: View {
             Button(action: onClose) {
                 Image(systemName: "chevron.left")
                     .font(.system(size: 17, weight: .bold))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(.primary)
                     .frame(width: 40, height: 40)
                     .background(Color(.systemBackground))
                     .clipShape(Circle())
@@ -1920,7 +1920,7 @@ struct SettingsScreen: View {
 
             Text("Settings")
                 .font(.system(size: 17, weight: .bold, design: .rounded))
-                .foregroundStyle(sweepInk)
+                .foregroundStyle(.primary)
 
             Spacer()
 
@@ -1949,11 +1949,11 @@ struct SettingsScreen: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text("Settings")
                     .font(.system(size: 28, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(.primary)
 
                 Text("Manage your crew, cars, shared alerts, and who can move them.")
                     .font(.system(size: 14, weight: .medium, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
             }
 
@@ -1974,11 +1974,11 @@ struct SettingsScreen: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(authentication.isAuthenticated ? "Signed in with Auth0" : "Sign in to sync alerts")
                         .font(.system(size: 14, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(.primary)
 
                     Text(accountSubtitle)
                         .font(.system(size: 12, weight: .medium, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(.secondary)
                         .lineLimit(2)
                 }
 
@@ -2071,11 +2071,11 @@ struct SettingsScreen: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text("Sign in to manage cars")
                         .font(.system(size: 14, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(.primary)
 
                     Text("Crew names, invite links, cars, and push alerts are stored after login.")
                         .font(.system(size: 12, weight: .medium, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }
@@ -2248,7 +2248,7 @@ struct SettingsScreen: View {
         VStack(alignment: .leading, spacing: 12) {
             Text(title)
                 .font(.system(size: 13, weight: .bold, design: .rounded))
-                .foregroundStyle(sweepMuted)
+                .foregroundStyle(.secondary)
                 .textCase(.uppercase)
 
             VStack(alignment: .leading, spacing: 12) {
