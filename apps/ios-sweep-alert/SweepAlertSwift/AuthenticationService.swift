@@ -54,7 +54,7 @@ final class AuthenticationService: ObservableObject {
                 .start()
 
             guard credentialsManager.store(credentials: credentials) else {
-                errorMessage = "Could not store Auth0 credentials."
+                errorMessage = String(localized: "Could not store Auth0 credentials.")
                 return
             }
 
@@ -66,7 +66,7 @@ final class AuthenticationService: ObservableObject {
         } catch {
             isAuthenticated = false
             convexSynced = false
-            errorMessage = "Login failed: \(error.localizedDescription)"
+            errorMessage = String(localized: "Login failed: \(error.localizedDescription)")
         }
     }
 
@@ -80,7 +80,7 @@ final class AuthenticationService: ObservableObject {
                 .webAuth(clientId: AppConfiguration.auth0ClientID, domain: AppConfiguration.auth0Domain)
                 .clearSession()
         } catch {
-            errorMessage = "Logout session clear failed: \(error.localizedDescription)"
+            errorMessage = String(localized: "Logout session clear failed: \(error.localizedDescription)")
         }
 
         _ = credentialsManager.clear()
@@ -223,7 +223,7 @@ final class AuthenticationService: ObservableObject {
             convexSynced = true
         } catch {
             convexSynced = false
-            errorMessage = "Convex sync failed: \(error.localizedDescription)"
+            errorMessage = String(localized: "Convex sync failed: \(error.localizedDescription)")
         }
     }
 
@@ -243,7 +243,7 @@ final class AuthenticationService: ObservableObject {
                 let token = try await pushNotifications.requestDeviceToken()
                 try await convexService.registerDevice(pushToken: token, idToken: credentials.idToken)
             } catch {
-                errorMessage = "Push registration failed: \(error.localizedDescription)"
+                errorMessage = String(localized: "Push registration failed: \(error.localizedDescription)")
             }
         }
     }

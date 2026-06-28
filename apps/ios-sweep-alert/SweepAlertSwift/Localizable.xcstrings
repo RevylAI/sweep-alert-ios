@@ -1,0 +1,1176 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "SweepAlert": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸਵੀਪਅਲਰਟ"
+          }
+        }
+      }
+    },
+    "Create your car crew": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਆਪਣੀ ਕਾਰ ਕ੍ਰਿਊ ਬਣਾਓ"
+          }
+        }
+      }
+    },
+    "Sign in to save cars, share invite links, and sync alerts.": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਕਾਰਾਂ ਸੇਵ ਕਰਨ, ਸੱਦਾ ਲਿੰਕ ਸਾਂਝੇ ਕਰਨ ਅਤੇ ਅਲਰਟ ਸਿੰਕ ਕਰਨ ਲਈ ਸਾਈਨ ਇਨ ਕਰੋ।"
+          }
+        }
+      }
+    },
+    "Sign in": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸਾਈਨ ਇਨ"
+          }
+        }
+      }
+    },
+    "Checking account": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਖਾਤਾ ਜਾਂਚਿਆ ਜਾ ਰਿਹਾ ਹੈ"
+          }
+        }
+      }
+    },
+    "Open settings": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹੋ"
+          }
+        }
+      }
+    },
+    "You are here": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤੁਸੀਂ ਇੱਥੇ ਹੋ"
+          }
+        }
+      }
+    },
+    "San Francisco parking map": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸੈਨ ਫਰਾਂਸਿਸਕੋ ਪਾਰਕਿੰਗ ਨਕਸ਼ਾ"
+          }
+        }
+      }
+    },
+    "Sign in to create or join a car crew before setting a parking spot.": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਪਾਰਕਿੰਗ ਸਪਾਟ ਸੈੱਟ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਕਾਰ ਕ੍ਰਿਊ ਬਣਾਉਣ ਜਾਂ ਸ਼ਾਮਿਲ ਹੋਣ ਲਈ ਸਾਈਨ ਇਨ ਕਰੋ।"
+          }
+        }
+      }
+    },
+    "OK": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਠੀਕ ਹੈ"
+          }
+        }
+      }
+    },
+    "Park Here": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਇੱਥੇ ਪਾਰਕ ਕਰੋ"
+          }
+        }
+      }
+    },
+    "Parked here": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਇੱਥੇ ਪਾਰਕ ਕੀਤਾ"
+          }
+        }
+      }
+    },
+    "Settings": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸੈਟਿੰਗਾਂ"
+          }
+        }
+      }
+    },
+    "Manage your crew, cars, shared alerts, and who can move them.": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਆਪਣੀ ਕ੍ਰਿਊ, ਕਾਰਾਂ, ਸਾਂਝੇ ਅਲਰਟ ਅਤੇ ਉਹਨਾਂ ਨੂੰ ਮੈਨੇਜ ਕਰੋ ਜੋ ਉਹਨਾਂ ਨੂੰ ਮੋਵ ਕਰ ਸਕਦੇ ਹਨ।"
+          }
+        }
+      }
+    },
+    "Account": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਖਾਤਾ"
+          }
+        }
+      }
+    },
+    "Sign in to sync alerts": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਅਲਰਟ ਸਿੰਕ ਕਰਨ ਲਈ ਸਾਈਨ ਇਨ ਕਰੋ"
+          }
+        }
+      }
+    },
+    "Use Auth0 to join crews and receive shared car updates.": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਕ੍ਰਿਊ ਵਿੱਚ ਸ਼ਾਮਿਲ ਹੋਣ ਅਤੇ ਸਾਂਝੇ ਕਾਰ ਅਪਡੇਟ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ Auth0 ਵਰਤੋ।"
+          }
+        }
+      }
+    },
+    "Log in": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਲੌਗ ਇਨ"
+          }
+        }
+      }
+    },
+    "Log out": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਲੌਗ ਆਉਟ"
+          }
+        }
+      }
+    },
+    "Signed in with Auth0": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auth0 ਨਾਲ ਸਾਈਨ ਇਨ"
+          }
+        }
+      }
+    },
+    "Crew": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਕ੍ਰਿਊ"
+          }
+        }
+      }
+    },
+    "Sign in to manage cars": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਕਾਰਾਂ ਮੈਨੇਜ ਕਰਨ ਲਈ ਸਾਈਨ ਇਨ ਕਰੋ"
+          }
+        }
+      }
+    },
+    "Crew names, invite links, cars, and push alerts are stored after login.": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਲੌਗਇਨ ਤੋਂ ਬਾਅਦ ਕ੍ਰਿਊ ਨਾਮ, ਸੱਦਾ ਲਿੰਕ, ਕਾਰਾਂ ਅਤੇ ਪੁਸ਼ ਅਲਰਟ ਸਟੋਰ ਹੁੰਦੇ ਹਨ।"
+          }
+        }
+      }
+    },
+    "Back": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਪਿੱਛੇ"
+          }
+        }
+      }
+    },
+    "Share invite link": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸੱਦਾ ਲਿੰਕ ਸਾਂਝਾ ਕਰੋ"
+          }
+        }
+      }
+    },
+    "Tap the map to drop your parking pin": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਪਾਰਕਿੰਗ ਪਿੰਨ ਲਗਾਉਣ ਲਈ ਨਕਸ਼ੇ 'ਤੇ ਟੈਪ ਕਰੋ"
+          }
+        }
+      }
+    },
+    "Expand parking details": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਪਾਰਕਿੰਗ ਵੇਰਵੇ ਵਿਸਤਾਰ ਕਰੋ"
+          }
+        }
+      }
+    },
+    "Collapse parking details": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਪਾਰਕਿੰਗ ਵੇਰਵੇ ਸਮੇਟੋ"
+          }
+        }
+      }
+    },
+    "Reading curb rules": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਕਰਬ ਨਿਯਮ ਪੜ੍ਹੇ ਜਾ ਰਹੇ ਹਨ"
+          }
+        }
+      }
+    },
+    "Checking nearby SF sweeping schedules...": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਨੇੜਲੇ SF ਸਫਾਈ ਸਮਾਂ-ਸਾਰਣੀਆਂ ਦੀ ਜਾਂਚ..."
+          }
+        }
+      }
+    },
+    "No street cleaning found": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਕੋਈ ਗਲੀ ਸਫਾਈ ਨਹੀਂ ਮਿਲੀ"
+          }
+        }
+      }
+    },
+    "No sweeping schedule found near this spot. Double-check the pin is on the street.": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਇਸ ਸਥਾਨ ਦੇ ਨੇੜੇ ਕੋਈ ਸਫਾਈ ਸਮਾਂ-ਸਾਰਣੀ ਨਹੀਂ ਮਿਲੀ। ਜਾਂਚ ਕਰੋ ਕਿ ਪਿੰਨ ਗਲੀ 'ਤੇ ਹੈ।"
+          }
+        }
+      }
+    },
+    "Clear Pin": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਪਿੰਨ ਹਟਾਓ"
+          }
+        }
+      }
+    },
+    "Nearby rules": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਨੇੜਲੇ ਨਿਯਮ"
+          }
+        }
+      }
+    },
+    "%lld match within %lldm": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld ਮਿਲਾਨ %lldm ਦੇ ਅੰਦਰ"
+          }
+        }
+      }
+    },
+    "%lld matches within %lldm": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld ਮਿਲਾਨ %lldm ਦੇ ਅੰਦਰ"
+          }
+        }
+      }
+    },
+    "%lld car": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld ਕਾਰ"
+          }
+        }
+      }
+    },
+    "%lld cars": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld ਕਾਰਾਂ"
+          }
+        }
+      }
+    },
+    "Where is it parked now?": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਹੁਣ ਇਹ ਕਿੱਥੇ ਪਾਰਕ ਹੈ?"
+          }
+        }
+      }
+    },
+    "Tap the map to place a new pin, or use your current location.": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਨਵਾਂ ਪਿੰਨ ਲਗਾਉਣ ਲਈ ਨਕਸ਼ੇ 'ਤੇ ਟੈਪ ਕਰੋ, ਜਾਂ ਆਪਣਾ ਮੌਜੂਦਾ ਸਥਾਨ ਵਰਤੋ।"
+          }
+        }
+      }
+    },
+    "Use current": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਮੌਜੂਦਾ ਵਰਤੋ"
+          }
+        }
+      }
+    },
+    "Cancel": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਰੱਦ ਕਰੋ"
+          }
+        }
+      }
+    },
+    "Choose spot": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸਥਾਨ ਚੁਣੋ"
+          }
+        }
+      }
+    },
+    "Street side": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਗਲੀ ਪਾਸਾ"
+          }
+        }
+      }
+    },
+    "Tap the map or use current location": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਨਕਸ਼ੇ 'ਤੇ ਟੈਪ ਕਰੋ ਜਾਂ ਮੌਜੂਦਾ ਸਥਾਨ ਵਰਤੋ"
+          }
+        }
+      }
+    },
+    "Use current location": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਮੌਜੂਦਾ ਸਥਾਨ ਵਰਤੋ"
+          }
+        }
+      }
+    },
+    "Cancel move": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਮੋਵ ਰੱਦ ਕਰੋ"
+          }
+        }
+      }
+    },
+    "Add a car in settings to start tracking parking spots.": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਪਾਰਕਿੰਗ ਸਪਾਟ ਟ੍ਰੈਕ ਕਰਨ ਲਈ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਕਾਰ ਜੋੜੋ।"
+          }
+        }
+      }
+    },
+    "Add a car": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਕਾਰ ਜੋੜੋ"
+          }
+        }
+      }
+    },
+    "%@ parking marker": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ ਪਾਰਕਿੰਗ ਮਾਰਕਰ"
+          }
+        }
+      }
+    },
+    "Notifications": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸੂਚਨਾਵਾਂ"
+          }
+        }
+      }
+    },
+    "Street cleaning alerts": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਗਲੀ ਸਫਾਈ ਅਲਰਟ"
+          }
+        }
+      }
+    },
+    "Crew claim updates": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਕ੍ਰਿਊ ਕਲੇਮ ਅਪਡੇਟ"
+          }
+        }
+      }
+    },
+    "First reminder": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਪਹਿਲੀ ਯਾਦ-ਦਹਾਨੀ"
+          }
+        }
+      }
+    },
+    "Group name": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਗਰੁੱਪ ਨਾਮ"
+          }
+        }
+      }
+    },
+    "Crew name": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਕ੍ਰਿਊ ਨਾਮ"
+          }
+        }
+      }
+    },
+    "Save crew name": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਕ੍ਰਿਊ ਨਾਮ ਸੇਵ ਕਰੋ"
+          }
+        }
+      }
+    },
+    "Cars": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਕਾਰਾਂ"
+          }
+        }
+      }
+    },
+    "Save %@": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ ਸੇਵ ਕਰੋ"
+          }
+        }
+      }
+    },
+    "Members": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਮੈਂਬਰ"
+          }
+        }
+      }
+    },
+    "%lld members can receive alerts": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld ਮੈਂਬਰ ਅਲਰਟ ਪ੍ਰਾਪਤ ਕਰ ਸਕਦੇ ਹਨ"
+          }
+        }
+      }
+    },
+    "Invite": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸੱਦਾ"
+          }
+        }
+      }
+    },
+    "Invite to %@": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ ਨੂੰ ਸੱਦਾ"
+          }
+        }
+      }
+    },
+    "Anyone with the app can join this crew and help manage every car.": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਐਪ ਵਾਲਾ ਕੋਈ ਵੀ ਇਸ ਕ੍ਰਿਊ ਵਿੱਚ ਸ਼ਾਮਿਲ ਹੋ ਸਕਦਾ ਹੈ ਅਤੇ ਹਰ ਕਾਰ ਮੈਨੇਜ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰ ਸਕਦਾ ਹੈ।"
+          }
+        }
+      }
+    },
+    "Add a car before setting a parking spot.": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਪਾਰਕਿੰਗ ਸਪਾਟ ਸੈੱਟ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਕਾਰ ਜੋੜੋ।"
+          }
+        }
+      }
+    },
+    "Sign in before creating a car crew invite link.": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਕਾਰ ਕ੍ਰਿਊ ਸੱਦਾ ਲਿੰਕ ਬਣਾਉਣ ਤੋਂ ਪਹਿਲਾਂ ਸਾਈਨ ਇਨ ਕਰੋ।"
+          }
+        }
+      }
+    },
+    "Could not create invite: %@": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸੱਦਾ ਨਹੀਂ ਬਣਾਇਆ ਜਾ ਸਕਿਆ: %@"
+          }
+        }
+      }
+    },
+    "Sign in to accept this car crew invite.": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਕਾਰ ਕ੍ਰਿਊ ਸੱਦਾ ਸਵੀਕਾਰ ਕਰਨ ਲਈ ਸਾਈਨ ਇਨ ਕਰੋ।"
+          }
+        }
+      }
+    },
+    "Joined %@.": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ ਵਿੱਚ ਸ਼ਾਮਿਲ ਹੋਏ।"
+          }
+        }
+      }
+    },
+    "Could not accept invite: %@": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸੱਦਾ ਸਵੀਕਾਰ ਨਹੀਂ ਹੋ ਸਕਿਆ: %@"
+          }
+        }
+      }
+    },
+    "Sign in before renaming your crew.": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਕ੍ਰਿਊ ਦਾ ਨਾਮ ਬਦਲਣ ਤੋਂ ਪਹਿਲਾਂ ਸਾਈਨ ਇਨ ਕਰੋ।"
+          }
+        }
+      }
+    },
+    "Could not rename crew: %@": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਕ੍ਰਿਊ ਦਾ ਨਾਮ ਨਹੀਂ ਬਦਲਿਆ ਜਾ ਸਕਿਆ: %@"
+          }
+        }
+      }
+    },
+    "Sign in before adding another car.": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਹੋਰ ਕਾਰ ਜੋੜਨ ਤੋਂ ਪਹਿਲਾਂ ਸਾਈਨ ਇਨ ਕਰੋ।"
+          }
+        }
+      }
+    },
+    "Could not add car: %@": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਕਾਰ ਨਹੀਂ ਜੋੜੀ ਜਾ ਸਕੀ: %@"
+          }
+        }
+      }
+    },
+    "Sign in before renaming cars.": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਕਾਰਾਂ ਦਾ ਨਾਮ ਬਦਲਣ ਤੋਂ ਪਹਿਲਾਂ ਸਾਈਨ ਇਨ ਕਰੋ।"
+          }
+        }
+      }
+    },
+    "Could not rename car: %@": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਕਾਰ ਦਾ ਨਾਮ ਨਹੀਂ ਬਦਲਿਆ ਜਾ ਸਕਿਆ: %@"
+          }
+        }
+      }
+    },
+    "Could not store Auth0 credentials.": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auth0 ਕ੍ਰੈਡੈਂਸ਼ਲ ਸਟੋਰ ਨਹੀਂ ਹੋ ਸਕੇ।"
+          }
+        }
+      }
+    },
+    "Login failed: %@": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਲੌਗਇਨ ਅਸਫਲ: %@"
+          }
+        }
+      }
+    },
+    "Logout session clear failed: %@": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਲੌਗਆਉਟ ਸੈਸ਼ਨ ਕਲੀਅਰ ਅਸਫਲ: %@"
+          }
+        }
+      }
+    },
+    "Convex sync failed: %@": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Convex ਸਿੰਕ ਅਸਫਲ: %@"
+          }
+        }
+      }
+    },
+    "Push registration failed: %@": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਪੁਸ਼ ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਅਸਫਲ: %@"
+          }
+        }
+      }
+    },
+    "Move claim sync failed: %@": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਮੋਵ ਕਲੇਮ ਸਿੰਕ ਅਸਫਲ: %@"
+          }
+        }
+      }
+    },
+    "Crew sync failed: %@": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਕ੍ਰਿਊ ਸਿੰਕ ਅਸਫਲ: %@"
+          }
+        }
+      }
+    },
+    "Parking sync failed: %@": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਪਾਰਕਿੰਗ ਸਿੰਕ ਅਸਫਲ: %@"
+          }
+        }
+      }
+    },
+    "Notification settings sync failed: %@": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸੂਚਨਾ ਸੈਟਿੰਗਾਂ ਸਿੰਕ ਅਸਫਲ: %@"
+          }
+        }
+      }
+    },
+    "Convex returned an invalid response.": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Convex ਨੇ ਅਵੈਧ ਜਵਾਬ ਦਿੱਤਾ।"
+          }
+        }
+      }
+    },
+    "Convex request failed with HTTP %lld: %@": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Convex ਬੇਨਤੀ HTTP %lld ਨਾਲ ਅਸਫਲ: %@"
+          }
+        }
+      }
+    },
+    "Notification permission was not granted.": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਸੂਚਨਾ ਇਜਾਜ਼ਤ ਨਹੀਂ ਦਿੱਤੀ ਗਈ।"
+          }
+        }
+      }
+    },
+    "%@ is setting the new spot": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ ਨਵਾਂ ਸਪਾਟ ਸੈੱਟ ਕਰ ਰਿਹਾ/ਰਹੀ ਹੈ"
+          }
+        }
+      }
+    },
+    "%@ claimed this move": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ ਨੇ ਇਹ ਮੋਵ ਕਲੇਮ ਕੀਤਾ"
+          }
+        }
+      }
+    },
+    "%@ moved it %@": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ ਨੇ ਇਸਨੂੰ %@ ਮੋਵ ਕੀਤਾ"
+          }
+        }
+      }
+    },
+    "%lld people get alerts": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld ਲੋਕਾਂ ਨੂੰ ਅਲਰਟ ਮਿਲਦੇ ਹਨ"
+          }
+        }
+      }
+    },
+    "%@ is moving it": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ ਇਸਨੂੰ ਮੋਵ ਕਰ ਰਿਹਾ/ਰਹੀ ਹੈ"
+          }
+        }
+      }
+    },
+    "Set %@'s new spot": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ ਦਾ ਨਵਾਂ ਸਪਾਟ ਸੈੱਟ ਕਰੋ"
+          }
+        }
+      }
+    },
+    "Your account": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਤੁਹਾਡਾ ਖਾਤਾ"
+          }
+        }
+      }
+    },
+    "%@ is connected to %@.": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %@ ਨਾਲ ਜੁੜਿਆ ਹੈ।"
+          }
+        }
+      }
+    },
+    "Auth0 is connected. Waiting to sync with Convex.": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auth0 ਜੁੜਿਆ ਹੈ। Convex ਨਾਲ ਸਿੰਕ ਦੀ ਉਡੀਕ।"
+          }
+        }
+      }
+    },
+    "at pin": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਪਿੰਨ 'ਤੇ"
+          }
+        }
+      }
+    },
+    "%lld ft": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld ਫੁੱਟ"
+          }
+        }
+      }
+    },
+    "Northeast": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਉੱਤਰ-ਪੂਰਬ"
+          }
+        }
+      }
+    },
+    "Northwest": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਉੱਤਰ-ਪੱਛਮ"
+          }
+        }
+      }
+    },
+    "Southeast": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਦੱਖਣ-ਪੂਰਬ"
+          }
+        }
+      }
+    },
+    "Southwest": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਦੱਖਣ-ਪੱਛਮ"
+          }
+        }
+      }
+    },
+    "just now": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਹੁਣੇ"
+          }
+        }
+      }
+    },
+    "%lldm ago": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld ਮਿੰਟ ਪਹਿਲਾਂ"
+          }
+        }
+      }
+    },
+    "%lldh ago": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld ਘੰਟੇ ਪਹਿਲਾਂ"
+          }
+        }
+      }
+    },
+    "%lldd ago": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld ਦਿਨ ਪਹਿਲਾਂ"
+          }
+        }
+      }
+    },
+    "Move your car NOW": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਆਪਣੀ ਕਾਰ ਹੁਣੇ ਮੋਵ ਕਰੋ"
+          }
+        }
+      }
+    },
+    "Street cleaning in %lldh": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਗਲੀ ਸਫਾਈ %lld ਘੰਟਿਆਂ ਵਿੱਚ"
+          }
+        }
+      }
+    },
+    "Street cleaning tomorrow": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਕੱਲ੍ਹ ਗਲੀ ਸਫਾਈ"
+          }
+        }
+      }
+    },
+    "Street cleaning %@": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਗਲੀ ਸਫਾਈ %@"
+          }
+        }
+      }
+    },
+    "See the next street cleaning window for your shared car.": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਆਪਣੀ ਸਾਂਝੀ ਕਾਰ ਲਈ ਅਗਲੀ ਗਲੀ ਸਫਾਈ ਵਿੰਡੋ ਦੇਖੋ।"
+          }
+        }
+      }
+    },
+    "%@ side - %@": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ ਪਾਸਾ - %@"
+          }
+        }
+      }
+    },
+    "%@ - %@ side - %@": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ - %@ ਪਾਸਾ - %@"
+          }
+        }
+      }
+    },
+    "Auto-selected": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਆਟੋ-ਚੁਣਿਆ"
+          }
+        }
+      }
+    },
+    "Changed": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਬਦਲਿਆ"
+          }
+        }
+      }
+    },
+    "Add car": {
+      "localizations": {
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਕਾਰ ਜੋੜੋ"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

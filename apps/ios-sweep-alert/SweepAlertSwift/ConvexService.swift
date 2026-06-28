@@ -48,9 +48,9 @@ struct ConvexService {
         var errorDescription: String? {
             switch self {
             case .invalidResponse:
-                return "Convex returned an invalid response."
+                return String(localized: "Convex returned an invalid response.")
             case let .httpStatus(status, message):
-                return "Convex request failed with HTTP \(status): \(message)"
+                return String(localized: "Convex request failed with HTTP \(status): \(message)")
             case let .functionError(message):
                 return message
             }
