@@ -1854,6 +1854,7 @@ struct SettingsScreen: View {
     @State private var crewNameDraft = ""
     @State private var newCarName = ""
     @State private var carNameDrafts: [String: String] = [:]
+    @AppStorage("appearancePreference") private var appearancePreference = AppearancePreference.system.rawValue
 
     var body: some View {
         VStack(spacing: 0) {
@@ -1862,6 +1863,7 @@ struct SettingsScreen: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 22) {
                     header
+                    appearanceSection
                     accountSection
                     if authentication.isAuthenticated {
                         notificationSection
@@ -1943,6 +1945,18 @@ struct SettingsScreen: View {
             }
 
             Spacer()
+        }
+    }
+
+    private var appearanceSection: some View {
+        settingsGroup(title: "Appearance") {
+            Picker("Appearance", selection: $appearancePreference) {
+                ForEach(AppearancePreference.allCases) { preference in
+                    Text(preference.title).tag(preference.rawValue)
+                }
+            }
+            .pickerStyle(.segmented)
+            .accessibilityIdentifier("appearance-picker")
         }
     }
 
