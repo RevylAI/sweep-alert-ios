@@ -164,10 +164,21 @@ private extension View {
     }
 }
 
+import SwiftUI
+import UIKit
+
 private let sweepBlue = Color(red: 0.05, green: 0.39, blue: 0.90)
 private let sweepGreen = Color(red: 0.20, green: 0.78, blue: 0.42)
-private let sweepInk = Color(red: 0.08, green: 0.10, blue: 0.14)
-private let sweepMuted = Color(red: 0.38, green: 0.43, blue: 0.50)
+private let sweepInk = Color(uiColor: UIColor { traits in
+    traits.userInterfaceStyle == .dark
+        ? UIColor(red: 0.96, green: 0.97, blue: 0.98, alpha: 1)
+        : UIColor(red: 0.08, green: 0.10, blue: 0.14, alpha: 1)
+})
+private let sweepMuted = Color(uiColor: UIColor { traits in
+    traits.userInterfaceStyle == .dark
+        ? UIColor(red: 0.65, green: 0.68, blue: 0.72, alpha: 1)
+        : UIColor(red: 0.38, green: 0.43, blue: 0.50, alpha: 1)
+})
 
 #Preview(as: .systemMedium) {
     SweepAlertWidget()
