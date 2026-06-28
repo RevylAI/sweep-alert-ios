@@ -237,6 +237,7 @@ private enum SweepDataStore {
 
 struct ContentView: View {
     @EnvironmentObject private var authentication: AuthenticationService
+    @AppStorage("appearancePreference") private var appearancePreference = AppearancePreference.system.rawValue
     @StateObject private var locationStore = LocationStore()
     @State private var cameraPosition: MapCameraPosition = .region(
         MKCoordinateRegion(
@@ -347,6 +348,7 @@ struct ContentView: View {
             .ignoresSafeArea(edges: .bottom)
         }
         .background(Color(.systemGroupedBackground))
+        .preferredColorScheme(currentAppearance.colorScheme)
         .animation(.spring(response: 0.35, dampingFraction: 0.9), value: parkedPin != nil)
         .onAppear {
             locationStore.requestLocation()
@@ -410,6 +412,11 @@ struct ContentView: View {
         } message: {
             Text(statusMessage ?? "")
         }
+    }
+
+    /// Resolves the persisted appearance preference for the map home experience.
+    private var currentAppearance: AppearancePreference {
+        AppearancePreference(rawValue: appearancePreference) ?? .system
     }
 
     private var selectedCar: CrewCar? {
