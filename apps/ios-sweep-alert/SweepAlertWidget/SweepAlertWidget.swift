@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 import WidgetKit
 
 struct SweepAlertWidgetEntry: TimelineEntry {
@@ -48,18 +49,18 @@ struct SweepAlertWidgetView: View {
 
             Text(entry.statusLabel)
                 .font(.system(size: 18, weight: .bold, design: .rounded))
-                .foregroundStyle(sweepInk)
+                .foregroundStyle(WidgetTheme.ink)
                 .lineLimit(2)
                 .minimumScaleFactor(0.78)
 
             VStack(alignment: .leading, spacing: 3) {
                 Text(entry.streetName)
                     .font(.system(size: 13, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(WidgetTheme.ink)
 
                 Text("\(entry.streetSide) side - \(entry.timeWindow)")
                     .font(.system(size: 11, weight: .semibold, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(WidgetTheme.muted)
                     .lineLimit(1)
                     .minimumScaleFactor(0.82)
             }
@@ -74,13 +75,13 @@ struct SweepAlertWidgetView: View {
 
                 Text(entry.statusLabel)
                     .font(.system(size: 21, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(WidgetTheme.ink)
                     .lineLimit(2)
                     .minimumScaleFactor(0.82)
 
                 Text("\(entry.streetName) - \(entry.streetSide) side - \(entry.timeWindow)")
                     .font(.system(size: 13, weight: .semibold, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(WidgetTheme.muted)
                     .lineLimit(1)
                     .minimumScaleFactor(0.82)
             }
@@ -92,17 +93,17 @@ struct SweepAlertWidgetView: View {
                     .font(.system(size: 18, weight: .bold))
                     .foregroundStyle(.white)
                     .frame(width: 38, height: 38)
-                    .background(sweepGreen)
+                    .background(WidgetTheme.green)
                     .clipShape(Circle())
 
                 Text(entry.nextCleaningLabel)
                     .font(.system(size: 13, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepGreen)
+                    .foregroundStyle(WidgetTheme.green)
                     .multilineTextAlignment(.trailing)
 
                 Text(entry.carName)
                     .font(.system(size: 11, weight: .semibold, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(WidgetTheme.muted)
                     .lineLimit(1)
             }
         }
@@ -115,12 +116,12 @@ struct SweepAlertWidgetView: View {
                 .font(.system(size: 11, weight: .bold))
                 .foregroundStyle(.white)
                 .frame(width: 22, height: 22)
-                .background(sweepBlue)
+                .background(WidgetTheme.blue)
                 .clipShape(Circle())
 
             Text("SweepAlert")
                 .font(.system(size: 13, weight: .bold, design: .rounded))
-                .foregroundStyle(sweepInk)
+                .foregroundStyle(WidgetTheme.ink)
                 .lineLimit(1)
         }
     }
@@ -164,10 +165,22 @@ private extension View {
     }
 }
 
-private let sweepBlue = Color(red: 0.05, green: 0.39, blue: 0.90)
-private let sweepGreen = Color(red: 0.20, green: 0.78, blue: 0.42)
-private let sweepInk = Color(red: 0.08, green: 0.10, blue: 0.14)
-private let sweepMuted = Color(red: 0.38, green: 0.43, blue: 0.50)
+private enum WidgetTheme {
+    static let blue = Color(red: 0.05, green: 0.39, blue: 0.90)
+    static let green = Color(red: 0.20, green: 0.78, blue: 0.42)
+
+    static let ink = Color(uiColor: UIColor { traits in
+        traits.userInterfaceStyle == .dark
+            ? UIColor(red: 0.949, green: 0.957, blue: 0.973, alpha: 1)
+            : UIColor(red: 0.08, green: 0.10, blue: 0.14, alpha: 1)
+    })
+
+    static let muted = Color(uiColor: UIColor { traits in
+        traits.userInterfaceStyle == .dark
+            ? UIColor(red: 0.604, green: 0.639, blue: 0.698, alpha: 1)
+            : UIColor(red: 0.38, green: 0.43, blue: 0.50, alpha: 1)
+    })
+}
 
 #Preview(as: .systemMedium) {
     SweepAlertWidget()
