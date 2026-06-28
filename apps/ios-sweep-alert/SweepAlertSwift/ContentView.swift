@@ -1857,6 +1857,34 @@ struct SettingsScreen: View {
     @State private var newCarName = ""
     @State private var carNameDrafts: [String: String] = [:]
 
+    private var activeLightTheme: SettingsLightTheme? {
+        authentication.isAuthenticated ? nil : .unauthenticated
+    }
+
+    private var titleColor: Color {
+        activeLightTheme?.ink ?? sweepInk
+    }
+
+    private var subtitleColor: Color {
+        activeLightTheme?.muted ?? sweepMuted
+    }
+
+    private var groupedBackgroundColor: Color {
+        activeLightTheme?.groupedBackground ?? Color(.systemGroupedBackground)
+    }
+
+    private var cardBackgroundColor: Color {
+        activeLightTheme?.cardBackground ?? Color(.systemBackground)
+    }
+
+    private var secondarySurfaceColor: Color {
+        activeLightTheme?.secondarySurface ?? Color(.secondarySystemBackground)
+    }
+
+    private var separatorColor: Color {
+        activeLightTheme?.separator ?? Color(.separator)
+    }
+
     var body: some View {
         VStack(spacing: 0) {
             topBar
@@ -1876,7 +1904,8 @@ struct SettingsScreen: View {
                 .padding(.bottom, 28)
             }
         }
-        .background(Color(.systemGroupedBackground).ignoresSafeArea())
+        .background(groupedBackgroundColor.ignoresSafeArea())
+        .settingsUnauthenticatedLightMode(isEnabled: !authentication.isAuthenticated)
         .accessibilityIdentifier("settings-screen")
         .onChange(of: preferences) { _, newValue in
             syncNotificationPreferences(newValue)
@@ -1891,13 +1920,13 @@ struct SettingsScreen: View {
             Button(action: onClose) {
                 Image(systemName: "chevron.left")
                     .font(.system(size: 17, weight: .bold))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(titleColor)
                     .frame(width: 40, height: 40)
-                    .background(Color(.systemBackground))
+                    .background(cardBackgroundColor)
                     .clipShape(Circle())
                     .overlay {
                         Circle()
-                            .stroke(Color(.separator).opacity(0.28), lineWidth: 0.5)
+                            .stroke(separatorColor.opacity(0.28), lineWidth: 0.5)
                     }
             }
             .accessibilityLabel("Back")
@@ -1907,7 +1936,7 @@ struct SettingsScreen: View {
 
             Text("Settings")
                 .font(.system(size: 17, weight: .bold, design: .rounded))
-                .foregroundStyle(sweepInk)
+                .foregroundStyle(titleColor)
 
             Spacer()
 
@@ -1936,11 +1965,11 @@ struct SettingsScreen: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text("Settings")
                     .font(.system(size: 28, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(titleColor)
 
                 Text("Manage your crew, cars, shared alerts, and who can move them.")
                     .font(.system(size: 14, weight: .medium, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(subtitleColor)
                     .fixedSize(horizontal: false, vertical: true)
             }
 
@@ -1961,11 +1990,11 @@ struct SettingsScreen: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(authentication.isAuthenticated ? "Signed in with Auth0" : "Sign in to sync alerts")
                         .font(.system(size: 14, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(titleColor)
 
                     Text(accountSubtitle)
                         .font(.system(size: 12, weight: .medium, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(subtitleColor)
                         .lineLimit(2)
                 }
 
@@ -1986,10 +2015,10 @@ struct SettingsScreen: View {
                     } label: {
                         Text(authentication.isAuthenticated ? "Log out" : "Log in")
                             .font(.system(size: 13, weight: .bold, design: .rounded))
-                            .foregroundStyle(authentication.isAuthenticated ? sweepInk : .white)
+                            .foregroundStyle(authentication.isAuthenticated ? titleColor : .white)
                             .padding(.horizontal, 12)
                             .padding(.vertical, 8)
-                            .background(authentication.isAuthenticated ? Color(.secondarySystemBackground) : sweepBlue)
+                            .background(authentication.isAuthenticated ? secondarySurfaceColor : sweepBlue)
                             .clipShape(Capsule())
                     }
                     .accessibilityIdentifier(authentication.isAuthenticated ? "logout-button" : "login-button")
@@ -2058,11 +2087,11 @@ struct SettingsScreen: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text("Sign in to manage cars")
                         .font(.system(size: 14, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(titleColor)
 
                     Text("Crew names, invite links, cars, and push alerts are stored after login.")
                         .font(.system(size: 12, weight: .medium, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(subtitleColor)
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }
@@ -2235,18 +2264,18 @@ struct SettingsScreen: View {
         VStack(alignment: .leading, spacing: 12) {
             Text(title)
                 .font(.system(size: 13, weight: .bold, design: .rounded))
-                .foregroundStyle(sweepMuted)
+                .foregroundStyle(subtitleColor)
                 .textCase(.uppercase)
 
             VStack(alignment: .leading, spacing: 12) {
                 content()
             }
             .padding(14)
-            .background(Color(.systemBackground))
+            .background(cardBackgroundColor)
             .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
             .overlay {
                 RoundedRectangle(cornerRadius: 18, style: .continuous)
-                    .stroke(Color(.separator).opacity(0.25), lineWidth: 0.5)
+                    .stroke(separatorColor.opacity(0.25), lineWidth: 0.5)
             }
         }
     }
