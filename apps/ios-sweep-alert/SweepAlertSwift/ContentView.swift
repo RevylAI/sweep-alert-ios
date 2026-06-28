@@ -1984,7 +1984,7 @@ struct SettingsScreen: View {
                             }
                         }
                     } label: {
-                        Text(authentication.isAuthenticated ? "Log out" : "Log in")
+                        Text(authentication.isAuthenticated ? "Log out" : "Sign in")
                             .font(.system(size: 13, weight: .bold, design: .rounded))
                             .foregroundStyle(authentication.isAuthenticated ? sweepInk : .white)
                             .padding(.horizontal, 12)
