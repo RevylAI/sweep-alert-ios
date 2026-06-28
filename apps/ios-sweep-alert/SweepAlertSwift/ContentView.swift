@@ -193,8 +193,21 @@ final class LocationStore: NSObject, ObservableObject, CLLocationManagerDelegate
 private let sfCoordinate = CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194)
 private let searchRadiusMeters: CLLocationDistance = 60
 private let sweepBlue = Color(red: 0.05, green: 0.39, blue: 0.90)
-private let sweepInk = Color(red: 0.08, green: 0.10, blue: 0.14)
-private let sweepMuted = Color(red: 0.38, green: 0.43, blue: 0.50)
+private let sweepInk = Color(uiColor: UIColor { traits in
+    traits.userInterfaceStyle == .dark
+        ? UIColor(red: 0.95, green: 0.96, blue: 0.98, alpha: 1)
+        : UIColor(red: 0.08, green: 0.10, blue: 0.14, alpha: 1)
+})
+private let sweepMuted = Color(uiColor: UIColor { traits in
+    traits.userInterfaceStyle == .dark
+        ? UIColor(red: 0.62, green: 0.66, blue: 0.72, alpha: 1)
+        : UIColor(red: 0.38, green: 0.43, blue: 0.50, alpha: 1)
+})
+private let sweepCardStroke = Color(uiColor: UIColor { traits in
+    traits.userInterfaceStyle == .dark
+        ? UIColor.white.withAlphaComponent(0.12)
+        : UIColor.white.withAlphaComponent(0.58)
+})
 
 private let fallbackSweepSegments = [
     SweepSegment(
@@ -483,7 +496,7 @@ struct ContentView: View {
                 .clipShape(Capsule())
                 .overlay {
                     Capsule()
-                        .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                        .stroke(sweepCardStroke, lineWidth: 1)
                 }
                 .shadow(color: .black.opacity(0.09), radius: 12, x: 0, y: 6)
                 .accessibilityIdentifier("app-title-badge")
@@ -501,7 +514,7 @@ struct ContentView: View {
                     .clipShape(Circle())
                     .overlay {
                         Circle()
-                            .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                            .stroke(sweepCardStroke, lineWidth: 1)
                     }
             }
             .shadow(color: .black.opacity(0.09), radius: 12, x: 0, y: 6)
@@ -1051,7 +1064,7 @@ struct RulesSheet: View {
         .clipShape(UnevenRoundedRectangle(topLeadingRadius: isExpanded ? 28 : 22, topTrailingRadius: isExpanded ? 28 : 22))
         .overlay(alignment: .top) {
             UnevenRoundedRectangle(topLeadingRadius: isExpanded ? 28 : 22, topTrailingRadius: isExpanded ? 28 : 22)
-                .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                .stroke(sweepCardStroke, lineWidth: 1)
         }
         .shadow(color: .black.opacity(isExpanded ? 0.16 : 0.10), radius: isExpanded ? 20 : 14, x: 0, y: -8)
         .accessibilityIdentifier("rules-sheet")
@@ -1606,7 +1619,7 @@ struct ReparkMapControls: View {
         .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: 18, style: .continuous)
-                .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                .stroke(sweepCardStroke, lineWidth: 1)
         }
         .shadow(color: .black.opacity(0.14), radius: 16, x: 0, y: 8)
     }
@@ -1680,7 +1693,7 @@ struct SignedOutPanel: View {
         .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: 22, style: .continuous)
-                .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                .stroke(sweepCardStroke, lineWidth: 1)
         }
         .shadow(color: .black.opacity(0.14), radius: 18, x: 0, y: 8)
     }
@@ -1728,7 +1741,7 @@ struct EmptyCrewPanel: View {
         .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: 22, style: .continuous)
-                .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                .stroke(sweepCardStroke, lineWidth: 1)
         }
         .shadow(color: .black.opacity(0.14), radius: 18, x: 0, y: 8)
     }
@@ -1986,7 +1999,7 @@ struct SettingsScreen: View {
                     } label: {
                         Text(authentication.isAuthenticated ? "Log out" : "Log in")
                             .font(.system(size: 13, weight: .bold, design: .rounded))
-                            .foregroundStyle(authentication.isAuthenticated ? sweepInk : .white)
+                            .foregroundStyle(authentication.isAuthenticated ? Color.primary : .white)
                             .padding(.horizontal, 12)
                             .padding(.vertical, 8)
                             .background(authentication.isAuthenticated ? Color(.secondarySystemBackground) : sweepBlue)
