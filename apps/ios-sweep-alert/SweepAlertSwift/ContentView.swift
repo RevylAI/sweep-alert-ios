@@ -1942,6 +1942,17 @@ struct SettingsScreen: View {
                     .font(.system(size: 14, weight: .medium, design: .rounded))
                     .foregroundStyle(sweepMuted)
                     .fixedSize(horizontal: false, vertical: true)
+
+                if !authentication.isAuthenticated {
+                    Text("fff")
+                        .font(.system(size: 13, weight: .bold, design: .rounded))
+                        .foregroundStyle(sweepBlue)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 5)
+                        .background(sweepBlue.opacity(0.12))
+                        .clipShape(Capsule())
+                        .accessibilityIdentifier("settings-signed-out-fff-badge")
+                }
             }
 
             Spacer()
