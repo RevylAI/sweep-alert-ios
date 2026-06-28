@@ -193,8 +193,21 @@ final class LocationStore: NSObject, ObservableObject, CLLocationManagerDelegate
 private let sfCoordinate = CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194)
 private let searchRadiusMeters: CLLocationDistance = 60
 private let sweepBlue = Color(red: 0.05, green: 0.39, blue: 0.90)
-private let sweepInk = Color(red: 0.08, green: 0.10, blue: 0.14)
-private let sweepMuted = Color(red: 0.38, green: 0.43, blue: 0.50)
+private let sweepInk = Color(uiColor: UIColor { traits in
+    traits.userInterfaceStyle == .dark
+        ? UIColor(red: 0.95, green: 0.96, blue: 0.98, alpha: 1)
+        : UIColor(red: 0.08, green: 0.10, blue: 0.14, alpha: 1)
+})
+private let sweepMuted = Color(uiColor: UIColor { traits in
+    traits.userInterfaceStyle == .dark
+        ? UIColor(red: 0.62, green: 0.66, blue: 0.72, alpha: 1)
+        : UIColor(red: 0.38, green: 0.43, blue: 0.50, alpha: 1)
+})
+private let sweepCardStroke = Color(uiColor: UIColor { traits in
+    traits.userInterfaceStyle == .dark
+        ? UIColor.white.withAlphaComponent(0.12)
+        : UIColor.white.withAlphaComponent(0.58)
+})
 
 private let fallbackSweepSegments = [
     SweepSegment(
@@ -483,7 +496,7 @@ struct ContentView: View {
                 .clipShape(Capsule())
                 .overlay {
                     Capsule()
-                        .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                        .stroke(sweepCardStroke, lineWidth: 1)
                 }
                 .shadow(color: .black.opacity(0.09), radius: 12, x: 0, y: 6)
                 .accessibilityIdentifier("app-title-badge")
@@ -501,7 +514,7 @@ struct ContentView: View {
                     .clipShape(Circle())
                     .overlay {
                         Circle()
-                            .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                            .stroke(sweepCardStroke, lineWidth: 1)
                     }
             }
             .shadow(color: .black.opacity(0.09), radius: 12, x: 0, y: 6)
@@ -1051,7 +1064,7 @@ struct RulesSheet: View {
         .clipShape(UnevenRoundedRectangle(topLeadingRadius: isExpanded ? 28 : 22, topTrailingRadius: isExpanded ? 28 : 22))
         .overlay(alignment: .top) {
             UnevenRoundedRectangle(topLeadingRadius: isExpanded ? 28 : 22, topTrailingRadius: isExpanded ? 28 : 22)
-                .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                .stroke(sweepCardStroke, lineWidth: 1)
         }
         .shadow(color: .black.opacity(isExpanded ? 0.16 : 0.10), radius: isExpanded ? 20 : 14, x: 0, y: -8)
         .accessibilityIdentifier("rules-sheet")
@@ -1606,7 +1619,7 @@ struct ReparkMapControls: View {
         .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: 18, style: .continuous)
-                .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                .stroke(sweepCardStroke, lineWidth: 1)
         }
         .shadow(color: .black.opacity(0.14), radius: 16, x: 0, y: 8)
     }
@@ -1630,11 +1643,11 @@ struct SignedOutPanel: View {
                 VStack(alignment: .leading, spacing: 3) {
                     Text("Create your car crew")
                         .font(.system(size: 18, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(.primary)
 
                     Text("Sign in to save cars, share invite links, and sync alerts.")
                         .font(.system(size: 13, weight: .medium, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }
@@ -1666,7 +1679,7 @@ struct SignedOutPanel: View {
                 Button(action: onOpenSettings) {
                     Image(systemName: "gearshape.fill")
                         .font(.system(size: 15, weight: .bold))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(.primary)
                         .frame(width: 46, height: 46)
                         .background(Color(.secondarySystemBackground))
                         .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
@@ -1680,7 +1693,7 @@ struct SignedOutPanel: View {
         .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: 22, style: .continuous)
-                .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                .stroke(sweepCardStroke, lineWidth: 1)
         }
         .shadow(color: .black.opacity(0.14), radius: 18, x: 0, y: 8)
     }
@@ -1728,7 +1741,7 @@ struct EmptyCrewPanel: View {
         .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: 22, style: .continuous)
-                .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                .stroke(sweepCardStroke, lineWidth: 1)
         }
         .shadow(color: .black.opacity(0.14), radius: 18, x: 0, y: 8)
     }
@@ -1891,7 +1904,7 @@ struct SettingsScreen: View {
             Button(action: onClose) {
                 Image(systemName: "chevron.left")
                     .font(.system(size: 17, weight: .bold))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(.primary)
                     .frame(width: 40, height: 40)
                     .background(Color(.systemBackground))
                     .clipShape(Circle())
@@ -1907,7 +1920,7 @@ struct SettingsScreen: View {
 
             Text("Settings")
                 .font(.system(size: 17, weight: .bold, design: .rounded))
-                .foregroundStyle(sweepInk)
+                .foregroundStyle(.primary)
 
             Spacer()
 
@@ -1936,11 +1949,11 @@ struct SettingsScreen: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text("Settings")
                     .font(.system(size: 28, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(.primary)
 
                 Text("Manage your crew, cars, shared alerts, and who can move them.")
                     .font(.system(size: 14, weight: .medium, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
             }
 
@@ -1961,11 +1974,11 @@ struct SettingsScreen: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(authentication.isAuthenticated ? "Signed in with Auth0" : "Sign in to sync alerts")
                         .font(.system(size: 14, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(.primary)
 
                     Text(accountSubtitle)
                         .font(.system(size: 12, weight: .medium, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(.secondary)
                         .lineLimit(2)
                 }
 
@@ -1986,7 +1999,7 @@ struct SettingsScreen: View {
                     } label: {
                         Text(authentication.isAuthenticated ? "Log out" : "Log in")
                             .font(.system(size: 13, weight: .bold, design: .rounded))
-                            .foregroundStyle(authentication.isAuthenticated ? sweepInk : .white)
+                            .foregroundStyle(authentication.isAuthenticated ? Color.primary : .white)
                             .padding(.horizontal, 12)
                             .padding(.vertical, 8)
                             .background(authentication.isAuthenticated ? Color(.secondarySystemBackground) : sweepBlue)
@@ -2058,11 +2071,11 @@ struct SettingsScreen: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text("Sign in to manage cars")
                         .font(.system(size: 14, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(.primary)
 
                     Text("Crew names, invite links, cars, and push alerts are stored after login.")
                         .font(.system(size: 12, weight: .medium, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }
@@ -2235,7 +2248,7 @@ struct SettingsScreen: View {
         VStack(alignment: .leading, spacing: 12) {
             Text(title)
                 .font(.system(size: 13, weight: .bold, design: .rounded))
-                .foregroundStyle(sweepMuted)
+                .foregroundStyle(.secondary)
                 .textCase(.uppercase)
 
             VStack(alignment: .leading, spacing: 12) {
