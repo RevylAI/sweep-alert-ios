@@ -192,9 +192,9 @@ final class LocationStore: NSObject, ObservableObject, CLLocationManagerDelegate
 
 private let sfCoordinate = CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194)
 private let searchRadiusMeters: CLLocationDistance = 60
-private let sweepBlue = Color(red: 0.05, green: 0.39, blue: 0.90)
-private let sweepInk = Color(red: 0.08, green: 0.10, blue: 0.14)
-private let sweepMuted = Color(red: 0.38, green: 0.43, blue: 0.50)
+private let sweepBlue = SweepTheme.blue
+private let sweepInk = SweepTheme.ink
+private let sweepMuted = SweepTheme.muted
 
 private let fallbackSweepSegments = [
     SweepSegment(
@@ -483,7 +483,7 @@ struct ContentView: View {
                 .clipShape(Capsule())
                 .overlay {
                     Capsule()
-                        .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                        .stroke(SweepTheme.border, lineWidth: 1)
                 }
                 .shadow(color: .black.opacity(0.09), radius: 12, x: 0, y: 6)
                 .accessibilityIdentifier("app-title-badge")
@@ -501,7 +501,7 @@ struct ContentView: View {
                     .clipShape(Circle())
                     .overlay {
                         Circle()
-                            .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                            .stroke(SweepTheme.border, lineWidth: 1)
                     }
             }
             .shadow(color: .black.opacity(0.09), radius: 12, x: 0, y: 6)
@@ -1051,7 +1051,7 @@ struct RulesSheet: View {
         .clipShape(UnevenRoundedRectangle(topLeadingRadius: isExpanded ? 28 : 22, topTrailingRadius: isExpanded ? 28 : 22))
         .overlay(alignment: .top) {
             UnevenRoundedRectangle(topLeadingRadius: isExpanded ? 28 : 22, topTrailingRadius: isExpanded ? 28 : 22)
-                .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                .stroke(SweepTheme.border, lineWidth: 1)
         }
         .shadow(color: .black.opacity(isExpanded ? 0.16 : 0.10), radius: isExpanded ? 20 : 14, x: 0, y: -8)
         .accessibilityIdentifier("rules-sheet")
@@ -1606,7 +1606,7 @@ struct ReparkMapControls: View {
         .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: 18, style: .continuous)
-                .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                .stroke(SweepTheme.border, lineWidth: 1)
         }
         .shadow(color: .black.opacity(0.14), radius: 16, x: 0, y: 8)
     }
@@ -1657,7 +1657,7 @@ struct SignedOutPanel: View {
                     .foregroundStyle(.white)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 12)
-                    .background(Color.red)
+                    .background(sweepBlue)
                     .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
                 }
                 .disabled(isLoading)
@@ -1680,7 +1680,7 @@ struct SignedOutPanel: View {
         .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: 22, style: .continuous)
-                .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                .stroke(SweepTheme.border, lineWidth: 1)
         }
         .shadow(color: .black.opacity(0.14), radius: 18, x: 0, y: 8)
     }
@@ -1728,7 +1728,7 @@ struct EmptyCrewPanel: View {
         .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: 22, style: .continuous)
-                .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                .stroke(SweepTheme.border, lineWidth: 1)
         }
         .shadow(color: .black.opacity(0.14), radius: 18, x: 0, y: 8)
     }
