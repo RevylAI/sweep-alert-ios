@@ -1891,7 +1891,7 @@ struct SettingsScreen: View {
             Button(action: onClose) {
                 Image(systemName: "chevron.left")
                     .font(.system(size: 17, weight: .bold))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepColors.ink)
                     .frame(width: 40, height: 40)
                     .background(Color(.systemBackground))
                     .clipShape(Circle())
@@ -1907,7 +1907,7 @@ struct SettingsScreen: View {
 
             Text("Settings")
                 .font(.system(size: 17, weight: .bold, design: .rounded))
-                .foregroundStyle(sweepInk)
+                .foregroundStyle(SweepColors.ink)
 
             Spacer()
 
@@ -1936,11 +1936,11 @@ struct SettingsScreen: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text("Settings")
                     .font(.system(size: 28, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepColors.ink)
 
                 Text("Manage your crew, cars, shared alerts, and who can move them.")
                     .font(.system(size: 14, weight: .medium, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(SweepColors.muted)
                     .fixedSize(horizontal: false, vertical: true)
             }
 
@@ -1961,11 +1961,11 @@ struct SettingsScreen: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(authentication.isAuthenticated ? "Signed in with Auth0" : "Sign in to sync alerts")
                         .font(.system(size: 14, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(SweepColors.ink)
 
                     Text(accountSubtitle)
                         .font(.system(size: 12, weight: .medium, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepColors.muted)
                         .lineLimit(2)
                 }
 
@@ -1986,7 +1986,7 @@ struct SettingsScreen: View {
                     } label: {
                         Text(authentication.isAuthenticated ? "Log out" : "Log in")
                             .font(.system(size: 13, weight: .bold, design: .rounded))
-                            .foregroundStyle(authentication.isAuthenticated ? sweepInk : .white)
+                            .foregroundStyle(authentication.isAuthenticated ? SweepColors.ink : .white)
                             .padding(.horizontal, 12)
                             .padding(.vertical, 8)
                             .background(authentication.isAuthenticated ? Color(.secondarySystemBackground) : sweepBlue)
@@ -2034,7 +2034,7 @@ struct SettingsScreen: View {
             VStack(alignment: .leading, spacing: 10) {
                 Text("First reminder")
                     .font(.system(size: 13, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepColors.ink)
 
                 HStack(spacing: 8) {
                     reminderButton(hours: 6)
@@ -2058,11 +2058,11 @@ struct SettingsScreen: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text("Sign in to manage cars")
                         .font(.system(size: 14, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(SweepColors.ink)
 
                     Text("Crew names, invite links, cars, and push alerts are stored after login.")
                         .font(.system(size: 12, weight: .medium, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepColors.muted)
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }
@@ -2074,7 +2074,7 @@ struct SettingsScreen: View {
             VStack(alignment: .leading, spacing: 10) {
                 Text("Group name")
                     .font(.system(size: 12, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(SweepColors.muted)
 
                 HStack(spacing: 8) {
                     TextField("Crew name", text: $crewNameDraft)
@@ -2105,13 +2105,13 @@ struct SettingsScreen: View {
                 HStack {
                     Text("Cars")
                         .font(.system(size: 12, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepColors.muted)
 
                     Spacer()
 
                     Text("\(carCrew.cars.count)")
                         .font(.system(size: 12, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepColors.muted)
                 }
 
                 ForEach(carCrew.cars) { car in
@@ -2180,11 +2180,11 @@ struct SettingsScreen: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text("Members")
                         .font(.system(size: 15, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(SweepColors.ink)
 
                     Text("\(carCrew.members.count) members can receive alerts")
                         .font(.system(size: 12, weight: .medium, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepColors.muted)
                 }
 
                 Spacer()
@@ -2211,11 +2211,11 @@ struct SettingsScreen: View {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(member.isCurrentUser ? "\(member.name) (you)" : member.name)
                             .font(.system(size: 14, weight: .bold, design: .rounded))
-                            .foregroundStyle(sweepInk)
+                            .foregroundStyle(SweepColors.ink)
 
                         Text(member.role)
                             .font(.system(size: 12, weight: .medium, design: .rounded))
-                            .foregroundStyle(sweepMuted)
+                            .foregroundStyle(SweepColors.muted)
                     }
 
                     Spacer()
@@ -2235,7 +2235,7 @@ struct SettingsScreen: View {
         VStack(alignment: .leading, spacing: 12) {
             Text(title)
                 .font(.system(size: 13, weight: .bold, design: .rounded))
-                .foregroundStyle(sweepMuted)
+                .foregroundStyle(SweepColors.muted)
                 .textCase(.uppercase)
 
             VStack(alignment: .leading, spacing: 12) {
@@ -2258,7 +2258,7 @@ struct SettingsScreen: View {
         } label: {
             Text(formatReminderLeadTime(hours))
                 .font(.system(size: 13, weight: .bold, design: .rounded))
-                .foregroundStyle(selected ? .white : sweepInk)
+                .foregroundStyle(selected ? .white : SweepColors.ink)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 9)
                 .background(selected ? sweepBlue : Color(.secondarySystemBackground))
