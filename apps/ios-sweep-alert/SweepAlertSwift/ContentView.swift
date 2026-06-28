@@ -1853,6 +1853,7 @@ struct SettingsScreen: View {
     @State private var crewNameDraft = ""
     @State private var newCarName = ""
     @State private var carNameDrafts: [String: String] = [:]
+    @AppStorage("appearancePreference") private var appearancePreference = AppearancePreference.system.rawValue
 
     var body: some View {
         VStack(spacing: 0) {
@@ -1861,6 +1862,7 @@ struct SettingsScreen: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 22) {
                     header
+                    appearanceSection
                     accountSection
                     if authentication.isAuthenticated {
                         notificationSection
@@ -1943,6 +1945,38 @@ struct SettingsScreen: View {
 
             Spacer()
         }
+    }
+
+    private var appearanceSection: some View {
+        settingsGroup(title: "Appearance") {
+            VStack(alignment: .leading, spacing: 10) {
+                Text("Choose how SweepAlert looks on this device.")
+                    .font(.system(size: 12, weight: .medium, design: .rounded))
+                    .foregroundStyle(SweepTheme.muted)
+
+                HStack(spacing: 8) {
+                    ForEach(AppearancePreference.allCases) { option in
+                        appearanceButton(option)
+                    }
+                }
+            }
+        }
+    }
+
+    private func appearanceButton(_ option: AppearancePreference) -> some View {
+        let selected = appearancePreference == option.rawValue
+        return Button {
+            appearancePreference = option.rawValue
+        } label: {
+            Text(option.label)
+                .font(.system(size: 13, weight: .bold, design: .rounded))
+                .foregroundStyle(selected ? .white : SweepTheme.ink)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 9)
+                .background(selected ? SweepTheme.blue : Color(.secondarySystemBackground))
+                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+        }
+        .accessibilityIdentifier("appearance-\(option.rawValue)-button")
     }
 
     private var accountSection: some View {
