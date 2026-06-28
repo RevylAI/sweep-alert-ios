@@ -2064,6 +2064,10 @@ struct SettingsScreen: View {
                         .font(.system(size: 12, weight: .medium, design: .rounded))
                         .foregroundStyle(sweepMuted)
                         .fixedSize(horizontal: false, vertical: true)
+
+                    Text("ffff")
+                        .font(.system(size: 12, weight: .bold, design: .rounded))
+                        .foregroundStyle(sweepBlue)
                 }
             }
         }
