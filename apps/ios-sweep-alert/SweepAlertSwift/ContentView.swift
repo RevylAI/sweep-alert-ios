@@ -193,8 +193,6 @@ final class LocationStore: NSObject, ObservableObject, CLLocationManagerDelegate
 private let sfCoordinate = CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194)
 private let searchRadiusMeters: CLLocationDistance = 60
 private let sweepBlue = SweepTheme.blue
-private let sweepInk = SweepTheme.ink
-private let sweepMuted = SweepTheme.muted
 
 private let fallbackSweepSegments = [
     SweepSegment(
@@ -476,7 +474,7 @@ struct ContentView: View {
         HStack {
             Text("SweepAlert")
                 .font(.system(size: 15, weight: .bold, design: .rounded))
-                .foregroundStyle(sweepInk)
+                .foregroundStyle(SweepTheme.ink)
                 .padding(.horizontal, 11)
                 .padding(.vertical, 7)
                 .background(.ultraThinMaterial)
@@ -495,7 +493,7 @@ struct ContentView: View {
             } label: {
                 Image(systemName: "gearshape.fill")
                     .font(.system(size: 16, weight: .bold))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
                     .frame(width: 36, height: 36)
                     .background(.ultraThinMaterial)
                     .clipShape(Circle())
@@ -1028,7 +1026,7 @@ struct RulesSheet: View {
                 } else {
                     Text("Tap the map to drop your parking pin")
                         .font(.system(size: 15, weight: .regular, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepTheme.muted)
                         .padding(.top, 24)
                         .padding(.bottom, 32)
                 }
@@ -1069,7 +1067,7 @@ struct RulesSheet: View {
             Button(action: onToggleExpanded) {
                 Image(systemName: "xmark")
                     .font(.system(size: 13, weight: .bold))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
                     .frame(width: 34, height: 34)
                     .background(Color(.secondarySystemBackground))
                     .clipShape(Circle())
@@ -1120,13 +1118,13 @@ struct RulesSheet: View {
             VStack(alignment: .leading, spacing: 3) {
                 Text(title)
                     .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
                     .lineLimit(1)
                     .minimumScaleFactor(0.78)
 
                 Text(subtitle)
                     .font(.system(size: 12, weight: .medium, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(SweepTheme.muted)
                     .lineLimit(1)
                     .minimumScaleFactor(0.76)
             }
@@ -1135,7 +1133,7 @@ struct RulesSheet: View {
 
             Image(systemName: "chevron.up")
                 .font(.system(size: 13, weight: .bold))
-                .foregroundStyle(sweepMuted)
+                .foregroundStyle(SweepTheme.muted)
                 .frame(width: 34, height: 34)
                 .background(Color(.secondarySystemBackground))
                 .clipShape(Circle())
@@ -1160,11 +1158,11 @@ struct RulesSheet: View {
             VStack(spacing: 4) {
                 Text("Reading curb rules")
                     .font(.system(size: 18, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
 
                 Text("Checking nearby SF sweeping schedules...")
                     .font(.system(size: 14, weight: .regular, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(SweepTheme.muted)
             }
         }
         .frame(minHeight: 190)
@@ -1179,11 +1177,11 @@ struct RulesSheet: View {
 
             Text("No street cleaning found")
                 .font(.system(size: 20, weight: .bold, design: .rounded))
-                .foregroundStyle(sweepInk)
+                .foregroundStyle(SweepTheme.ink)
 
             Text("No sweeping schedule found near this spot. Double-check the pin is on the street.")
                 .font(.system(size: 14, weight: .regular, design: .rounded))
-                .foregroundStyle(sweepMuted)
+                .foregroundStyle(SweepTheme.muted)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 32)
 
@@ -1215,13 +1213,13 @@ struct RulesSheet: View {
                 VStack(alignment: .leading, spacing: 5) {
                     Text(urgencyLabel(top.nextOccurrence))
                         .font(.system(size: 22, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(SweepTheme.ink)
                         .lineLimit(2)
                         .minimumScaleFactor(0.82)
 
                     Text(ruleSummary(top))
                         .font(.system(size: 14, weight: .medium, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepTheme.muted)
                         .lineLimit(1)
                         .minimumScaleFactor(0.8)
                 }
@@ -1239,13 +1237,13 @@ struct RulesSheet: View {
             HStack {
                 Text("Nearby rules")
                     .font(.system(size: 13, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
 
                 Spacer()
 
                 Text("\(visibleRules.count) match\(visibleRules.count == 1 ? "" : "es") within \(Int(searchRadiusMeters))m")
                     .font(.system(size: 12, weight: .semibold, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(SweepTheme.muted)
             }
             .padding(.horizontal, 20)
             .padding(.bottom, 8)
@@ -1272,14 +1270,14 @@ struct RulesSheet: View {
                 VStack(alignment: .leading, spacing: 3) {
                     Text(carCrew.name)
                         .font(.system(size: 13, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepTheme.muted)
                         .textCase(.uppercase)
                         .lineLimit(1)
                         .minimumScaleFactor(0.78)
 
                     Text(crewStatusText)
                         .font(.system(size: 12, weight: .semibold, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepTheme.muted)
                         .lineLimit(1)
                         .minimumScaleFactor(0.78)
                 }
@@ -1291,7 +1289,7 @@ struct RulesSheet: View {
 
                     Text("\(cars.count) car\(cars.count == 1 ? "" : "s")")
                         .font(.system(size: 12, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepTheme.muted)
                 }
             }
             .padding(.horizontal, 20)
@@ -1310,7 +1308,7 @@ struct RulesSheet: View {
                                     .font(.system(size: 13, weight: .bold, design: .rounded))
                                     .lineLimit(1)
                             }
-                            .foregroundStyle(isSelected ? .white : sweepInk)
+                            .foregroundStyle(isSelected ? .white : SweepTheme.ink)
                             .padding(.horizontal, 13)
                             .padding(.vertical, 9)
                             .background(isSelected ? car.tint : Color(.secondarySystemBackground))
@@ -1345,11 +1343,11 @@ struct RulesSheet: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(selectedCar?.name ?? carCrew.carName)
                         .font(.system(size: 14, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(SweepTheme.ink)
 
                     Text(crewStatusText)
                         .font(.system(size: 12, weight: .medium, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepTheme.muted)
                 }
 
                 Spacer(minLength: 8)
@@ -1400,14 +1398,14 @@ struct RulesSheet: View {
 
                 Text("Where is it parked now?")
                     .font(.system(size: 13, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
 
                 Spacer(minLength: 8)
             }
 
             Text("Tap the map to place a new pin, or use your current location.")
                 .font(.system(size: 12, weight: .medium, design: .rounded))
-                .foregroundStyle(sweepMuted)
+                .foregroundStyle(SweepTheme.muted)
                 .lineLimit(2)
 
             HStack(spacing: 8) {
@@ -1425,7 +1423,7 @@ struct RulesSheet: View {
                 Button(action: onCancelRepark) {
                     Text("Cancel")
                         .font(.system(size: 13, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(SweepTheme.ink)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 10)
                         .background(Color(.systemBackground).opacity(0.78))
@@ -1449,7 +1447,7 @@ struct RulesSheet: View {
 
             Text("\(moveClaim.memberName) is moving it")
                 .font(.system(size: 13, weight: .bold, design: .rounded))
-                .foregroundStyle(sweepInk)
+                .foregroundStyle(SweepTheme.ink)
 
             Spacer(minLength: 8)
 
@@ -1503,13 +1501,13 @@ struct RulesSheet: View {
             HStack {
                 Text("Street side")
                     .font(.system(size: 13, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
 
                 Spacer()
 
                 Text(sideSelectionIsAutomatic ? "Auto-selected" : "Changed")
                     .font(.system(size: 12, weight: .semibold, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(SweepTheme.muted)
             }
             .padding(.horizontal, 20)
 
@@ -1522,7 +1520,7 @@ struct RulesSheet: View {
                         } label: {
                             Text(formatSide(side))
                                 .font(.system(size: 13, weight: .bold, design: .rounded))
-                                .foregroundStyle(isSelected ? .white : sweepInk)
+                                .foregroundStyle(isSelected ? .white : SweepTheme.ink)
                                 .padding(.horizontal, 14)
                                 .padding(.vertical, 9)
                                 .background(isSelected ? sweepBlue : Color(.systemBackground).opacity(0.82))
@@ -1567,13 +1565,13 @@ struct ReparkMapControls: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text("Set \(carName)'s new spot")
                     .font(.system(size: 14, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
                     .lineLimit(1)
                     .minimumScaleFactor(0.8)
 
                 Text("Tap the map or use current location")
                     .font(.system(size: 12, weight: .medium, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(SweepTheme.muted)
                     .lineLimit(1)
             }
 
@@ -1593,7 +1591,7 @@ struct ReparkMapControls: View {
             Button(action: onCancel) {
                 Image(systemName: "xmark")
                     .font(.system(size: 13, weight: .bold))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
                     .frame(width: 38, height: 38)
                     .background(Color(.systemBackground))
                     .clipShape(Circle())
@@ -1630,11 +1628,11 @@ struct SignedOutPanel: View {
                 VStack(alignment: .leading, spacing: 3) {
                     Text("Create your car crew")
                         .font(.system(size: 18, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(SweepTheme.ink)
 
                     Text("Sign in to save cars, share invite links, and sync alerts.")
                         .font(.system(size: 13, weight: .medium, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepTheme.muted)
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }
@@ -1666,7 +1664,7 @@ struct SignedOutPanel: View {
                 Button(action: onOpenSettings) {
                     Image(systemName: "gearshape.fill")
                         .font(.system(size: 15, weight: .bold))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(SweepTheme.ink)
                         .frame(width: 46, height: 46)
                         .background(Color(.secondarySystemBackground))
                         .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
@@ -1682,7 +1680,7 @@ struct SignedOutPanel: View {
             RoundedRectangle(cornerRadius: 22, style: .continuous)
                 .stroke(SweepTheme.border, lineWidth: 1)
         }
-        .shadow(color: .black.opacity(0.14), radius: 18, x: 0, y: 8)
+        .shadow(color: SweepTheme.shadow, radius: 18, x: 0, y: 8)
     }
 }
 
@@ -1702,11 +1700,11 @@ struct EmptyCrewPanel: View {
             VStack(alignment: .leading, spacing: 3) {
                 Text(crewName)
                     .font(.system(size: 18, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
 
                 Text("Add a car in settings to start tracking parking spots.")
                     .font(.system(size: 13, weight: .medium, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(SweepTheme.muted)
                     .fixedSize(horizontal: false, vertical: true)
             }
 
@@ -1730,7 +1728,7 @@ struct EmptyCrewPanel: View {
             RoundedRectangle(cornerRadius: 22, style: .continuous)
                 .stroke(SweepTheme.border, lineWidth: 1)
         }
-        .shadow(color: .black.opacity(0.14), radius: 18, x: 0, y: 8)
+        .shadow(color: SweepTheme.shadow, radius: 18, x: 0, y: 8)
     }
 }
 
@@ -1756,12 +1754,12 @@ struct CarMapMarker: View {
             }
             .overlay {
                 Circle()
-                    .stroke(isSelected ? sweepInk.opacity(0.18) : Color.clear, lineWidth: 3)
+                    .stroke(isSelected ? SweepTheme.ink.opacity(0.18) : Color.clear, lineWidth: 3)
             }
 
             Text(car.name)
                 .font(.system(size: 11, weight: .bold, design: .rounded))
-                .foregroundStyle(sweepInk)
+                .foregroundStyle(SweepTheme.ink)
                 .lineLimit(1)
                 .padding(.horizontal, 7)
                 .padding(.vertical, 4)
@@ -1790,12 +1788,12 @@ struct RuleRow: View {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(rule.segment.corridor)
                             .font(.system(size: 15, weight: .bold, design: .rounded))
-                            .foregroundStyle(sweepInk)
+                            .foregroundStyle(SweepTheme.ink)
                             .lineLimit(1)
 
                         Text(rule.segment.limits)
                             .font(.system(size: 12, weight: .medium, design: .rounded))
-                            .foregroundStyle(sweepMuted)
+                            .foregroundStyle(SweepTheme.muted)
                             .lineLimit(1)
                     }
                 }
@@ -1811,12 +1809,12 @@ struct RuleRow: View {
             VStack(alignment: .trailing, spacing: 5) {
                 Text(rule.segment.schedule)
                     .font(.system(size: 13, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
                     .lineLimit(1)
 
                 Text(formatTimeWindow(fromHour: rule.segment.fromHour, toHour: rule.segment.toHour))
                     .font(.system(size: 12, weight: .semibold, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(SweepTheme.muted)
 
                 Text(formatDate(rule.nextOccurrence))
                     .font(.system(size: 12, weight: .bold, design: .rounded))
@@ -1835,7 +1833,7 @@ struct RuleRow: View {
     private func rowPill(_ title: String, systemImage: String) -> some View {
         Label(title, systemImage: systemImage)
             .font(.system(size: 11, weight: .semibold, design: .rounded))
-            .foregroundStyle(sweepMuted)
+            .foregroundStyle(SweepTheme.muted)
             .padding(.horizontal, 7)
             .padding(.vertical, 4)
             .background(Color(.secondarySystemBackground))
@@ -1891,7 +1889,7 @@ struct SettingsScreen: View {
             Button(action: onClose) {
                 Image(systemName: "chevron.left")
                     .font(.system(size: 17, weight: .bold))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
                     .frame(width: 40, height: 40)
                     .background(Color(.systemBackground))
                     .clipShape(Circle())
@@ -1907,7 +1905,7 @@ struct SettingsScreen: View {
 
             Text("Settings")
                 .font(.system(size: 17, weight: .bold, design: .rounded))
-                .foregroundStyle(sweepInk)
+                .foregroundStyle(SweepTheme.ink)
 
             Spacer()
 
@@ -1936,11 +1934,11 @@ struct SettingsScreen: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text("Settings")
                     .font(.system(size: 28, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
 
                 Text("Manage your crew, cars, shared alerts, and who can move them.")
                     .font(.system(size: 14, weight: .medium, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(SweepTheme.muted)
                     .fixedSize(horizontal: false, vertical: true)
             }
 
@@ -1961,11 +1959,11 @@ struct SettingsScreen: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(authentication.isAuthenticated ? "Signed in with Auth0" : "Sign in to sync alerts")
                         .font(.system(size: 14, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(SweepTheme.ink)
 
                     Text(accountSubtitle)
                         .font(.system(size: 12, weight: .medium, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepTheme.muted)
                         .lineLimit(2)
                 }
 
@@ -1986,7 +1984,7 @@ struct SettingsScreen: View {
                     } label: {
                         Text(authentication.isAuthenticated ? "Log out" : "Log in")
                             .font(.system(size: 13, weight: .bold, design: .rounded))
-                            .foregroundStyle(authentication.isAuthenticated ? sweepInk : .white)
+                            .foregroundStyle(authentication.isAuthenticated ? SweepTheme.ink : .white)
                             .padding(.horizontal, 12)
                             .padding(.vertical, 8)
                             .background(authentication.isAuthenticated ? Color(.secondarySystemBackground) : sweepBlue)
@@ -2034,7 +2032,7 @@ struct SettingsScreen: View {
             VStack(alignment: .leading, spacing: 10) {
                 Text("First reminder")
                     .font(.system(size: 13, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
 
                 HStack(spacing: 8) {
                     reminderButton(hours: 6)
@@ -2058,11 +2056,11 @@ struct SettingsScreen: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text("Sign in to manage cars")
                         .font(.system(size: 14, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(SweepTheme.ink)
 
                     Text("Crew names, invite links, cars, and push alerts are stored after login.")
                         .font(.system(size: 12, weight: .medium, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepTheme.muted)
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }
@@ -2074,7 +2072,7 @@ struct SettingsScreen: View {
             VStack(alignment: .leading, spacing: 10) {
                 Text("Group name")
                     .font(.system(size: 12, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(SweepTheme.muted)
 
                 HStack(spacing: 8) {
                     TextField("Crew name", text: $crewNameDraft)
@@ -2105,13 +2103,13 @@ struct SettingsScreen: View {
                 HStack {
                     Text("Cars")
                         .font(.system(size: 12, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepTheme.muted)
 
                     Spacer()
 
                     Text("\(carCrew.cars.count)")
                         .font(.system(size: 12, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepTheme.muted)
                 }
 
                 ForEach(carCrew.cars) { car in
@@ -2180,11 +2178,11 @@ struct SettingsScreen: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text("Members")
                         .font(.system(size: 15, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(SweepTheme.ink)
 
                     Text("\(carCrew.members.count) members can receive alerts")
                         .font(.system(size: 12, weight: .medium, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepTheme.muted)
                 }
 
                 Spacer()
@@ -2211,11 +2209,11 @@ struct SettingsScreen: View {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(member.isCurrentUser ? "\(member.name) (you)" : member.name)
                             .font(.system(size: 14, weight: .bold, design: .rounded))
-                            .foregroundStyle(sweepInk)
+                            .foregroundStyle(SweepTheme.ink)
 
                         Text(member.role)
                             .font(.system(size: 12, weight: .medium, design: .rounded))
-                            .foregroundStyle(sweepMuted)
+                            .foregroundStyle(SweepTheme.muted)
                     }
 
                     Spacer()
@@ -2235,7 +2233,7 @@ struct SettingsScreen: View {
         VStack(alignment: .leading, spacing: 12) {
             Text(title)
                 .font(.system(size: 13, weight: .bold, design: .rounded))
-                .foregroundStyle(sweepMuted)
+                .foregroundStyle(SweepTheme.muted)
                 .textCase(.uppercase)
 
             VStack(alignment: .leading, spacing: 12) {
@@ -2258,7 +2256,7 @@ struct SettingsScreen: View {
         } label: {
             Text(formatReminderLeadTime(hours))
                 .font(.system(size: 13, weight: .bold, design: .rounded))
-                .foregroundStyle(selected ? .white : sweepInk)
+                .foregroundStyle(selected ? .white : SweepTheme.ink)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 9)
                 .background(selected ? sweepBlue : Color(.secondarySystemBackground))
@@ -2302,12 +2300,12 @@ struct InviteSheet: View {
             VStack(spacing: 6) {
                 Text("Invite to \(carCrew.name)")
                     .font(.system(size: 24, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
                     .multilineTextAlignment(.center)
 
                 Text("Anyone with the app can join this crew and help manage every car.")
                     .font(.system(size: 14, weight: .medium, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(SweepTheme.muted)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 28)
             }
