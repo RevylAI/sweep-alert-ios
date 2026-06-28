@@ -1869,7 +1869,7 @@ struct SettingsScreen: View {
                         notificationSection
                         crewSection
                     } else {
-                        signedOutCrewSection
+                        signedOutMultiplayerSection
                     }
                 }
                 .padding(.horizontal, 20)
@@ -2045,10 +2045,12 @@ struct SettingsScreen: View {
         }
     }
 
-    private var signedOutCrewSection: some View {
-        settingsGroup(title: "Crew") {
+    private var signedOutMultiplayerSection: some View {
+        let previewCrew = SharedCarCrew.demo
+
+        return settingsGroup(title: "Multiplayer") {
             HStack(spacing: 12) {
-                Image(systemName: "lock.fill")
+                Image(systemName: "person.3.fill")
                     .font(.system(size: 16, weight: .bold))
                     .foregroundStyle(sweepBlue)
                     .frame(width: 34, height: 34)
@@ -2056,15 +2058,130 @@ struct SettingsScreen: View {
                     .clipShape(Circle())
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("Sign in to manage cars")
+                    Text("Coordinate parking with your crew")
                         .font(.system(size: 14, weight: .bold, design: .rounded))
                         .foregroundStyle(sweepInk)
 
-                    Text("Crew names, invite links, cars, and push alerts are stored after login.")
+                    Text("Share cars, claim moves, and get alerts when roommates need help.")
                         .font(.system(size: 12, weight: .medium, design: .rounded))
                         .foregroundStyle(sweepMuted)
                         .fixedSize(horizontal: false, vertical: true)
                 }
+            }
+
+            Divider()
+
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Preview crew")
+                    .font(.system(size: 12, weight: .bold, design: .rounded))
+                    .foregroundStyle(sweepMuted)
+
+                Text(previewCrew.name)
+                    .font(.system(size: 15, weight: .bold, design: .rounded))
+                    .foregroundStyle(sweepInk)
+
+                HStack(spacing: -8) {
+                    ForEach(previewCrew.members) { member in
+                        Text(memberInitials(member.name))
+                            .font(.system(size: 11, weight: .bold, design: .rounded))
+                            .foregroundStyle(.white)
+                            .frame(width: 30, height: 30)
+                            .background(member.tint)
+                            .clipShape(Circle())
+                            .overlay {
+                                Circle()
+                                    .stroke(Color(.systemBackground), lineWidth: 2)
+                            }
+                    }
+
+                    Spacer()
+
+                    Text("\(previewCrew.members.count) players")
+                        .font(.system(size: 12, weight: .semibold, design: .rounded))
+                        .foregroundStyle(sweepMuted)
+                }
+
+                ForEach(previewCrew.cars) { car in
+                    HStack(spacing: 10) {
+                        Image(systemName: "car.fill")
+                            .font(.system(size: 12, weight: .bold))
+                            .foregroundStyle(.white)
+                            .frame(width: 28, height: 28)
+                            .background(car.tint)
+                            .clipShape(Circle())
+
+                        Text(car.name)
+                            .font(.system(size: 13, weight: .semibold, design: .rounded))
+                            .foregroundStyle(sweepInk)
+
+                        Spacer()
+                    }
+                }
+            }
+
+            Divider()
+
+            signedOutMultiplayerFeatureRow(
+                icon: "bell.badge.fill",
+                title: "Shared street-cleaning alerts",
+                subtitle: "Everyone gets notified before sweep day."
+            )
+
+            signedOutMultiplayerFeatureRow(
+                icon: "hand.raised.fill",
+                title: "Claim moves",
+                subtitle: "Tap \"I'll move it\" so your crew knows who's handling it."
+            )
+
+            signedOutMultiplayerFeatureRow(
+                icon: "link",
+                title: "Invite links",
+                subtitle: "Send a link to add roommates or partners to your crew."
+            )
+
+            Divider()
+
+            Button {
+                Task {
+                    await authentication.login()
+                }
+            } label: {
+                HStack(spacing: 8) {
+                    Image(systemName: "person.crop.circle.badge.plus")
+                        .font(.system(size: 14, weight: .bold))
+
+                    Text("Log in to start multiplayer")
+                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                }
+                .foregroundStyle(.white)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 11)
+                .background(sweepBlue)
+                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+            }
+            .disabled(authentication.isLoading)
+            .accessibilityIdentifier("multiplayer-login-button")
+        }
+    }
+
+    private func signedOutMultiplayerFeatureRow(icon: String, title: String, subtitle: String) -> some View {
+        HStack(alignment: .top, spacing: 10) {
+            Image(systemName: icon)
+                .font(.system(size: 13, weight: .bold))
+                .foregroundStyle(sweepBlue)
+                .frame(width: 28, height: 28)
+                .background(sweepBlue.opacity(0.10))
+                .clipShape(Circle())
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.system(size: 13, weight: .bold, design: .rounded))
+                    .foregroundStyle(sweepInk)
+
+                Text(subtitle)
+                    .font(.system(size: 12, weight: .medium, design: .rounded))
+                    .foregroundStyle(sweepMuted)
+                    .fixedSize(horizontal: false, vertical: true)
             }
         }
     }
