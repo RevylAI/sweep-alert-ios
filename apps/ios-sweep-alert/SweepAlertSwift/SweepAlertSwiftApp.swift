@@ -9,7 +9,6 @@ struct SweepAlertSwiftApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(authentication)
-                .preferredColorScheme(.light)
         }
     }
 }
