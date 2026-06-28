@@ -48,18 +48,18 @@ struct SweepAlertWidgetView: View {
 
             Text(entry.statusLabel)
                 .font(.system(size: 18, weight: .bold, design: .rounded))
-                .foregroundStyle(sweepInk)
+                .foregroundStyle(Color.primary)
                 .lineLimit(2)
                 .minimumScaleFactor(0.78)
 
             VStack(alignment: .leading, spacing: 3) {
                 Text(entry.streetName)
                     .font(.system(size: 13, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(Color.primary)
 
                 Text("\(entry.streetSide) side - \(entry.timeWindow)")
                     .font(.system(size: 11, weight: .semibold, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(Color.secondary)
                     .lineLimit(1)
                     .minimumScaleFactor(0.82)
             }
@@ -74,13 +74,13 @@ struct SweepAlertWidgetView: View {
 
                 Text(entry.statusLabel)
                     .font(.system(size: 21, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(Color.primary)
                     .lineLimit(2)
                     .minimumScaleFactor(0.82)
 
                 Text("\(entry.streetName) - \(entry.streetSide) side - \(entry.timeWindow)")
                     .font(.system(size: 13, weight: .semibold, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(Color.secondary)
                     .lineLimit(1)
                     .minimumScaleFactor(0.82)
             }
@@ -102,7 +102,7 @@ struct SweepAlertWidgetView: View {
 
                 Text(entry.carName)
                     .font(.system(size: 11, weight: .semibold, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(Color.secondary)
                     .lineLimit(1)
             }
         }
@@ -120,7 +120,7 @@ struct SweepAlertWidgetView: View {
 
             Text("SweepAlert")
                 .font(.system(size: 13, weight: .bold, design: .rounded))
-                .foregroundStyle(sweepInk)
+                .foregroundStyle(Color.primary)
                 .lineLimit(1)
         }
     }
@@ -166,8 +166,6 @@ private extension View {
 
 private let sweepBlue = Color(red: 0.05, green: 0.39, blue: 0.90)
 private let sweepGreen = Color(red: 0.20, green: 0.78, blue: 0.42)
-private let sweepInk = Color(red: 0.08, green: 0.10, blue: 0.14)
-private let sweepMuted = Color(red: 0.38, green: 0.43, blue: 0.50)
 
 #Preview(as: .systemMedium) {
     SweepAlertWidget()
