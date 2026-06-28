@@ -11,7 +11,7 @@ build:
     output: build/Build/Products/Debug-iphonesimulator/*.app
     platforms:
         ios:
-            app_id: e66b40b3-4b43-4fd4-8d32-c60bf52d55f5
+            app_id: ee303738-1c98-4c7b-b471-ed70d8ea5245
             command: xcodebuild -project SweepAlertSwift.xcodeproj -scheme 'SweepAlertSwift' -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' -derivedDataPath build
             output: build/Build/Products/Debug-iphonesimulator/SweepAlertSwift.app
             scheme: SweepAlertSwift
