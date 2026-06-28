@@ -1877,7 +1877,7 @@ struct SettingsScreen: View {
             }
         }
         .background(Color(.systemGroupedBackground).ignoresSafeArea())
-        .preferredColorScheme(revylAppearanceOverride)
+        .preferredColorScheme(.dark)
         .accessibilityIdentifier("settings-screen")
         .onChange(of: preferences) { _, newValue in
             syncNotificationPreferences(newValue)
@@ -1885,22 +1885,6 @@ struct SettingsScreen: View {
         .onAppear(perform: syncDrafts)
         .onChange(of: carCrew.name) { _, _ in syncDrafts() }
         .onChange(of: carCrew.cars.count) { _, _ in syncDrafts() }
-    }
-
-    /// Optional Revyl launch-var override used for DEBUG device verification screenshots.
-    private var revylAppearanceOverride: ColorScheme? {
-        #if DEBUG
-        switch ProcessInfo.processInfo.environment["REVYL_APPEARANCE"]?.lowercased() {
-        case "dark":
-            return .dark
-        case "light":
-            return .light
-        default:
-            return nil
-        }
-        #else
-        return nil
-        #endif
     }
 
     private var topBar: some View {

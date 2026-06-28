@@ -104,43 +104,6 @@ extension PushNotificationService: UNUserNotificationCenterDelegate {
 }
 
 final class SweepAlertAppDelegate: NSObject, UIApplicationDelegate {
-    /// Applies a Revyl launch-var appearance override during DEBUG device verification.
-    func application(
-        _ application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
-    ) -> Bool {
-        #if DEBUG
-        DispatchQueue.main.async {
-            self.applyRevylAppearanceOverrideIfNeeded(for: application)
-        }
-        #endif
-        return true
-    }
-
-    #if DEBUG
-    /// Overrides interface style when `REVYL_APPEARANCE` is set to `dark` or `light`.
-  private func applyRevylAppearanceOverrideIfNeeded(for application: UIApplication) {
-        guard let appearance = ProcessInfo.processInfo.environment["REVYL_APPEARANCE"]?.lowercased() else {
-            return
-        }
-
-        let style: UIUserInterfaceStyle
-        switch appearance {
-        case "dark":
-            style = .dark
-        case "light":
-            style = .light
-        default:
-            return
-        }
-
-        application.connectedScenes
-            .compactMap { $0 as? UIWindowScene }
-            .flatMap(\.windows)
-            .forEach { $0.overrideUserInterfaceStyle = style }
-    }
-    #endif
-
     func application(
         _ application: UIApplication,
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
