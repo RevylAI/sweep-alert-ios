@@ -1953,9 +1953,9 @@ struct SettingsScreen: View {
             HStack(spacing: 12) {
                 Image(systemName: authentication.isAuthenticated ? "checkmark.seal.fill" : "person.crop.circle.badge.plus")
                     .font(.system(size: 18, weight: .bold))
-                    .foregroundStyle(authentication.isAuthenticated ? Color.green : sweepBlue)
+                    .foregroundStyle(Color.green)
                     .frame(width: 34, height: 34)
-                    .background((authentication.isAuthenticated ? Color.green : sweepBlue).opacity(0.10))
+                    .background(Color.green.opacity(0.10))
                     .clipShape(Circle())
 
                 VStack(alignment: .leading, spacing: 2) {
