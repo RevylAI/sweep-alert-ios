@@ -278,17 +278,13 @@ struct ContentView: View {
 
             VStack(spacing: 0) {
                 header
-                Spacer()
-            }
-
-            VStack {
-                Spacer()
                 HStack {
                     Spacer()
                     mapZoomInButton
                 }
                 .padding(.trailing, 16)
-                .padding(.bottom, 16)
+                .padding(.top, 8)
+                Spacer()
             }
 
             VStack {
