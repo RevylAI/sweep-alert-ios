@@ -241,6 +241,10 @@ private enum SweepDataStore {
 struct ContentView: View {
     @EnvironmentObject private var authentication: AuthenticationService
     @StateObject private var locationStore = LocationStore()
+    @State private var visibleMapRegion = MKCoordinateRegion(
+        center: sfCoordinate,
+        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+    )
     @State private var cameraPosition: MapCameraPosition = .region(
         MKCoordinateRegion(
             center: sfCoordinate,
@@ -274,6 +278,12 @@ struct ContentView: View {
 
             VStack(spacing: 0) {
                 header
+                HStack {
+                    Spacer()
+                    mapZoomInButton
+                }
+                .padding(.trailing, 16)
+                .padding(.top, 8)
                 Spacer()
             }
 
@@ -456,6 +466,9 @@ struct ContentView: View {
                 MapCompass()
                 MapScaleView()
             }
+            .onMapCameraChange(frequency: .onEnd) { context in
+                visibleMapRegion = context.region
+            }
             .onTapGesture { point in
                 if let coordinate = proxy.convert(point, from: .local) {
                     dropPin(at: coordinate)
@@ -470,6 +483,33 @@ struct ContentView: View {
             return false
         }
         return coordinateDistance(parkedPin.coordinate, session.coordinate) < 2
+    }
+
+    private var mapZoomInButton: some View {
+        Button {
+            zoomIn()
+        } label: {
+            Image(systemName: "plus.magnifyingglass")
+                .font(.system(size: 16, weight: .bold))
+                .foregroundStyle(sweepInk)
+                .frame(width: 38, height: 38)
+                .background(.ultraThinMaterial)
+                .clipShape(Circle())
+                .overlay {
+                    Circle()
+                        .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                }
+        }
+        .shadow(color: .black.opacity(0.09), radius: 12, x: 0, y: 6)
+        .accessibilityLabel("Zoom in")
+        .accessibilityIdentifier("map-zoom-in-button")
+    }
+
+    /// Zooms the map in by halving the visible region span around the current center.
+    private func zoomIn() {
+        let zoomedRegion = zoomedInRegion(from: visibleMapRegion)
+        visibleMapRegion = zoomedRegion
+        cameraPosition = .region(zoomedRegion)
     }
 
     private var header: some View {
@@ -2584,6 +2624,20 @@ private func haversine(_ lat1: Double, _ lng1: Double, _ lat2: Double, _ lng2: D
 
 private func coordinateDistance(_ lhs: CLLocationCoordinate2D, _ rhs: CLLocationCoordinate2D) -> CLLocationDistance {
     haversine(lhs.latitude, lhs.longitude, rhs.latitude, rhs.longitude)
+}
+
+private let minimumMapSpan = 0.001
+private let mapZoomInFactor = 0.5
+
+/// Returns a tighter map region centered on the same point for zoom-in interactions.
+private func zoomedInRegion(from region: MKCoordinateRegion) -> MKCoordinateRegion {
+    MKCoordinateRegion(
+        center: region.center,
+        span: MKCoordinateSpan(
+            latitudeDelta: max(region.span.latitudeDelta * mapZoomInFactor, minimumMapSpan),
+            longitudeDelta: max(region.span.longitudeDelta * mapZoomInFactor, minimumMapSpan)
+        )
+    )
 }
 
 private func mapRegion(containing coordinates: [CLLocationCoordinate2D]) -> MKCoordinateRegion? {
