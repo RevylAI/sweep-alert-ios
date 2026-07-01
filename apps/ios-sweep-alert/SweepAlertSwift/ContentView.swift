@@ -994,6 +994,7 @@ struct ContentView: View {
 }
 
 struct RulesSheet: View {
+    @Environment(\.colorScheme) private var colorScheme
     let cars: [CrewCar]
     let selectedCarId: String
     let rules: [SweepRule]?
