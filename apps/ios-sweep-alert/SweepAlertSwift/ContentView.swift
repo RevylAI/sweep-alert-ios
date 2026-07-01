@@ -192,9 +192,9 @@ final class LocationStore: NSObject, ObservableObject, CLLocationManagerDelegate
 
 private let sfCoordinate = CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194)
 private let searchRadiusMeters: CLLocationDistance = 60
-private let sweepBlue = Color(red: 0.05, green: 0.39, blue: 0.90)
-private let sweepInk = Color(red: 0.08, green: 0.10, blue: 0.14)
-private let sweepMuted = Color(red: 0.38, green: 0.43, blue: 0.50)
+private let sweepBlue = SweepTheme.blue
+private let sweepInk = SweepTheme.ink
+private let sweepMuted = SweepTheme.muted
 
 private let fallbackSweepSegments = [
     SweepSegment(
@@ -239,6 +239,7 @@ private enum SweepDataStore {
 }
 
 struct ContentView: View {
+    @Environment(\.colorScheme) private var colorScheme
     @EnvironmentObject private var authentication: AuthenticationService
     @StateObject private var locationStore = LocationStore()
     @State private var cameraPosition: MapCameraPosition = .region(
@@ -483,9 +484,9 @@ struct ContentView: View {
                 .clipShape(Capsule())
                 .overlay {
                     Capsule()
-                        .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                        .stroke(SweepTheme.cardStroke(for: colorScheme), lineWidth: 1)
                 }
-                .shadow(color: .black.opacity(0.09), radius: 12, x: 0, y: 6)
+                .shadow(color: SweepTheme.cardShadow(for: colorScheme), radius: 12, x: 0, y: 6)
                 .accessibilityIdentifier("app-title-badge")
 
             Spacer()
@@ -501,10 +502,10 @@ struct ContentView: View {
                     .clipShape(Circle())
                     .overlay {
                         Circle()
-                            .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                            .stroke(SweepTheme.cardStroke(for: colorScheme), lineWidth: 1)
                     }
             }
-            .shadow(color: .black.opacity(0.09), radius: 12, x: 0, y: 6)
+            .shadow(color: SweepTheme.cardShadow(for: colorScheme), radius: 12, x: 0, y: 6)
             .accessibilityLabel("Open settings")
             .accessibilityIdentifier("settings-button")
         }
@@ -1051,9 +1052,9 @@ struct RulesSheet: View {
         .clipShape(UnevenRoundedRectangle(topLeadingRadius: isExpanded ? 28 : 22, topTrailingRadius: isExpanded ? 28 : 22))
         .overlay(alignment: .top) {
             UnevenRoundedRectangle(topLeadingRadius: isExpanded ? 28 : 22, topTrailingRadius: isExpanded ? 28 : 22)
-                .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                .stroke(SweepTheme.cardStroke(for: colorScheme), lineWidth: 1)
         }
-        .shadow(color: .black.opacity(isExpanded ? 0.16 : 0.10), radius: isExpanded ? 20 : 14, x: 0, y: -8)
+        .shadow(color: SweepTheme.cardShadow(for: colorScheme, opacity: isExpanded ? 0.16 : 0.10), radius: isExpanded ? 20 : 14, x: 0, y: -8)
         .accessibilityIdentifier("rules-sheet")
         .ignoresSafeArea(edges: .bottom)
     }
@@ -1558,6 +1559,7 @@ struct RulesSheet: View {
 }
 
 struct ReparkMapControls: View {
+    @Environment(\.colorScheme) private var colorScheme
     let carName: String
     let onUseCurrentLocation: () -> Void
     let onCancel: () -> Void
@@ -1606,13 +1608,14 @@ struct ReparkMapControls: View {
         .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: 18, style: .continuous)
-                .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                .stroke(SweepTheme.cardStroke(for: colorScheme), lineWidth: 1)
         }
-        .shadow(color: .black.opacity(0.14), radius: 16, x: 0, y: 8)
+        .shadow(color: SweepTheme.cardShadow(for: colorScheme, opacity: 0.14), radius: 16, x: 0, y: 8)
     }
 }
 
 struct SignedOutPanel: View {
+    @Environment(\.colorScheme) private var colorScheme
     let isLoading: Bool
     let onSignIn: () -> Void
     let onOpenSettings: () -> Void
@@ -1680,13 +1683,14 @@ struct SignedOutPanel: View {
         .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: 22, style: .continuous)
-                .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                .stroke(SweepTheme.cardStroke(for: colorScheme), lineWidth: 1)
         }
-        .shadow(color: .black.opacity(0.14), radius: 18, x: 0, y: 8)
+        .shadow(color: SweepTheme.cardShadow(for: colorScheme, opacity: 0.14), radius: 18, x: 0, y: 8)
     }
 }
 
 struct EmptyCrewPanel: View {
+    @Environment(\.colorScheme) private var colorScheme
     let crewName: String
     let onOpenSettings: () -> Void
 
@@ -1728,13 +1732,14 @@ struct EmptyCrewPanel: View {
         .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: 22, style: .continuous)
-                .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                .stroke(SweepTheme.cardStroke(for: colorScheme), lineWidth: 1)
         }
-        .shadow(color: .black.opacity(0.14), radius: 18, x: 0, y: 8)
+        .shadow(color: SweepTheme.cardShadow(for: colorScheme, opacity: 0.14), radius: 18, x: 0, y: 8)
     }
 }
 
 struct CarMapMarker: View {
+    @Environment(\.colorScheme) private var colorScheme
     let car: CrewCar
     let isSelected: Bool
 
@@ -1744,7 +1749,7 @@ struct CarMapMarker: View {
                 Circle()
                     .fill(Color(.systemBackground))
                     .frame(width: isSelected ? 44 : 38, height: isSelected ? 44 : 38)
-                    .shadow(color: .black.opacity(0.18), radius: 8, x: 0, y: 4)
+                    .shadow(color: SweepTheme.cardShadow(for: colorScheme, opacity: 0.18), radius: 8, x: 0, y: 4)
 
                 Circle()
                     .fill(car.tint)
@@ -1767,7 +1772,7 @@ struct CarMapMarker: View {
                 .padding(.vertical, 4)
                 .background(Color(.systemBackground).opacity(0.92))
                 .clipShape(Capsule())
-                .shadow(color: .black.opacity(0.10), radius: 6, x: 0, y: 3)
+                .shadow(color: SweepTheme.cardShadow(for: colorScheme, opacity: 0.10), radius: 6, x: 0, y: 3)
         }
         .accessibilityLabel("\(car.name) parking marker")
     }
@@ -1844,6 +1849,7 @@ struct RuleRow: View {
 }
 
 struct SettingsScreen: View {
+    @AppStorage(AppearancePreference.storageKey) private var appearanceRawValue = AppearancePreference.system.rawValue
     let carCrew: SharedCarCrew
     @ObservedObject var authentication: AuthenticationService
     @Binding var preferences: NotificationPreferences
@@ -1865,6 +1871,7 @@ struct SettingsScreen: View {
                 VStack(alignment: .leading, spacing: 22) {
                     header
                     accountSection
+                    appearanceSection
                     if authentication.isAuthenticated {
                         notificationSection
                         crewSection
@@ -2017,6 +2024,18 @@ struct SettingsScreen: View {
         }
 
         return "Auth0 is connected. Waiting to sync with Convex."
+    }
+
+    private var appearanceSection: some View {
+        settingsGroup(title: "Appearance") {
+            Picker("Theme", selection: $appearanceRawValue) {
+                ForEach(AppearancePreference.allCases) { option in
+                    Text(option.title).tag(option.rawValue)
+                }
+            }
+            .pickerStyle(.segmented)
+            .accessibilityIdentifier("appearance-picker")
+        }
     }
 
     private var notificationSection: some View {

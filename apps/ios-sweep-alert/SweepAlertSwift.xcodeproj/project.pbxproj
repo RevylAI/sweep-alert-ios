@@ -17,6 +17,8 @@
 		A1000008 /* ConvexService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000009 /* ConvexService.swift */; };
 		A1000009 /* Auth0 in Frameworks */ = {isa = PBXBuildFile; productRef = A1100001 /* Auth0 */; };
 		A1000010 /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000011 /* PushNotificationService.swift */; };
+		A1000011 /* AppearancePreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000013 /* AppearancePreference.swift */; };
+		A1000012 /* SweepTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000014 /* SweepTheme.swift */; };
 		B1000001 /* SweepAlertWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2000001 /* SweepAlertWidget.swift */; };
 		B1000002 /* SweepAlertWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B2000003 /* SweepAlertWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -58,6 +60,8 @@
 		A2000010 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2000011 /* PushNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
 		A2000012 /* SweepAlertSwift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SweepAlertSwift.entitlements; sourceTree = "<group>"; };
+		A2000013 /* AppearancePreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearancePreference.swift; sourceTree = "<group>"; };
+		A2000014 /* SweepTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SweepTheme.swift; sourceTree = "<group>"; };
 		B2000001 /* SweepAlertWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SweepAlertWidget.swift; sourceTree = "<group>"; };
 		B2000002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2000003 /* SweepAlertWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SweepAlertWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +99,8 @@
 			isa = PBXGroup;
 			children = (
 				A2000001 /* SweepAlertSwiftApp.swift */,
+				A2000013 /* AppearancePreference.swift */,
+				A2000014 /* SweepTheme.swift */,
 				A2000007 /* AppConfiguration.swift */,
 				A2000008 /* AuthenticationService.swift */,
 				A2000009 /* ConvexService.swift */,
@@ -241,6 +247,8 @@
 				A1000007 /* AuthenticationService.swift in Sources */,
 				A1000008 /* ConvexService.swift in Sources */,
 				A1000010 /* PushNotificationService.swift in Sources */,
+				A1000011 /* AppearancePreference.swift in Sources */,
+				A1000012 /* SweepTheme.swift in Sources */,
 				A1000002 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

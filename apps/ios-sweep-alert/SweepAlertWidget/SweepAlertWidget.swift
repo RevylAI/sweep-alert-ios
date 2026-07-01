@@ -166,8 +166,8 @@ private extension View {
 
 private let sweepBlue = Color(red: 0.05, green: 0.39, blue: 0.90)
 private let sweepGreen = Color(red: 0.20, green: 0.78, blue: 0.42)
-private let sweepInk = Color(red: 0.08, green: 0.10, blue: 0.14)
-private let sweepMuted = Color(red: 0.38, green: 0.43, blue: 0.50)
+private let sweepInk = Color(.label)
+private let sweepMuted = Color(.secondaryLabel)
 
 #Preview(as: .systemMedium) {
     SweepAlertWidget()
