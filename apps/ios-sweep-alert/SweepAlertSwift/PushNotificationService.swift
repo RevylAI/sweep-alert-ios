@@ -9,7 +9,7 @@ enum PushNotificationError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .permissionDenied:
-            return "Notification permission was not granted."
+            return String(localized: "Notification permission was not granted.")
         case let .registrationFailed(message):
             return message
         }

@@ -192,7 +192,7 @@ final class LocationStore: NSObject, ObservableObject, CLLocationManagerDelegate
 
 private let sfCoordinate = CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194)
 private let searchRadiusMeters: CLLocationDistance = 60
-private let sweepBlue = Color(red: 0.05, green: 0.39, blue: 0.90)
+private let sweepBlue = Color(red: 0.12, green: 0.48, blue: 0.96)
 private let sweepInk = Color(red: 0.08, green: 0.10, blue: 0.14)
 private let sweepMuted = Color(red: 0.38, green: 0.43, blue: 0.50)
 
@@ -555,13 +555,13 @@ struct ContentView: View {
 
     private func dropPin(at coordinate: CLLocationCoordinate2D) {
         guard authentication.isAuthenticated else {
-            statusMessage = "Sign in to create or join a car crew before setting a parking spot."
+            statusMessage = String(localized: "Sign in to create or join a car crew before setting a parking spot.")
             settingsPresented = true
             return
         }
 
         guard let car = selectedCar else {
-            statusMessage = "Add a car before setting a parking spot."
+            statusMessage = String(localized: "Add a car before setting a parking spot.")
             settingsPresented = true
             return
         }
@@ -626,7 +626,7 @@ struct ContentView: View {
                 isReparking = true
                 rulesSheetExpanded = false
             } catch {
-                authentication.errorMessage = "Move claim sync failed: \(error.localizedDescription)"
+                authentication.errorMessage = String(localized: "Move claim sync failed: \(error.localizedDescription)")
             }
         }
     }
@@ -716,14 +716,14 @@ struct ContentView: View {
             let remoteCrew = try await authentication.ensureDefaultCrew()
             applyRemoteCrew(remoteCrew, preferredCarId: selectedCarId)
         } catch {
-            authentication.errorMessage = "Crew sync failed: \(error.localizedDescription)"
+            authentication.errorMessage = String(localized: "Crew sync failed: \(error.localizedDescription)")
         }
     }
 
     private func prepareInviteAndPresent() {
         guard authentication.isAuthenticated else {
             settingsPresented = true
-            statusMessage = "Sign in before creating a car crew invite link."
+            statusMessage = String(localized: "Sign in before creating a car crew invite link.")
             return
         }
 
@@ -732,7 +732,7 @@ struct ContentView: View {
                 inviteURL = try await authentication.createInviteURL()
                 invitePresented = true
             } catch {
-                statusMessage = "Could not create invite: \(error.localizedDescription)"
+                statusMessage = String(localized: "Could not create invite: \(error.localizedDescription)")
             }
         }
     }
@@ -749,7 +749,7 @@ struct ContentView: View {
             }
         } else {
             settingsPresented = true
-            statusMessage = "Sign in to accept this car crew invite."
+            statusMessage = String(localized: "Sign in to accept this car crew invite.")
         }
     }
 
@@ -762,9 +762,9 @@ struct ContentView: View {
             let remoteCrew = try await authentication.acceptInvite(token: token)
             applyRemoteCrew(remoteCrew, preferredCarId: remoteCrew.cars.first?.id)
             pendingInviteToken = nil
-            statusMessage = "Joined \(remoteCrew.name)."
+            statusMessage = String(localized: "Joined \(remoteCrew.name).")
         } catch {
-            statusMessage = "Could not accept invite: \(error.localizedDescription)"
+            statusMessage = String(localized: "Could not accept invite: \(error.localizedDescription)")
         }
     }
 
@@ -812,7 +812,7 @@ struct ContentView: View {
                 activeParkingSessionId = selectedCarSession?.id
                 activeParkingSessionIsRemote = true
             } catch {
-                authentication.errorMessage = "Parking sync failed: \(error.localizedDescription)"
+                authentication.errorMessage = String(localized: "Parking sync failed: \(error.localizedDescription)")
             }
         }
     }
@@ -899,7 +899,7 @@ struct ContentView: View {
 
     private func renameCrew(_ name: String) {
         guard authentication.isAuthenticated else {
-            statusMessage = "Sign in before renaming your crew."
+            statusMessage = String(localized: "Sign in before renaming your crew.")
             return
         }
         Task {
@@ -907,14 +907,14 @@ struct ContentView: View {
                 let remoteCrew = try await authentication.renameCrew(name: name)
                 applyRemoteCrew(remoteCrew, preferredCarId: selectedCarId)
             } catch {
-                statusMessage = "Could not rename crew: \(error.localizedDescription)"
+                statusMessage = String(localized: "Could not rename crew: \(error.localizedDescription)")
             }
         }
     }
 
     private func addCar(_ name: String) {
         guard authentication.isAuthenticated else {
-            statusMessage = "Sign in before adding another car."
+            statusMessage = String(localized: "Sign in before adding another car.")
             return
         }
         Task {
@@ -923,14 +923,14 @@ struct ContentView: View {
                 let remoteCrew = try await authentication.createCar(name: name, color: color)
                 applyRemoteCrew(remoteCrew, preferredCarId: remoteCrew.cars.last?.id)
             } catch {
-                statusMessage = "Could not add car: \(error.localizedDescription)"
+                statusMessage = String(localized: "Could not add car: \(error.localizedDescription)")
             }
         }
     }
 
     private func renameCar(_ carId: String, _ name: String) {
         guard authentication.isAuthenticated else {
-            statusMessage = "Sign in before renaming cars."
+            statusMessage = String(localized: "Sign in before renaming cars.")
             return
         }
         Task {
@@ -938,7 +938,7 @@ struct ContentView: View {
                 let remoteCrew = try await authentication.renameCar(carId: carId, name: name)
                 applyRemoteCrew(remoteCrew, preferredCarId: carId)
             } catch {
-                statusMessage = "Could not rename car: \(error.localizedDescription)"
+                statusMessage = String(localized: "Could not rename car: \(error.localizedDescription)")
             }
         }
     }
@@ -1243,7 +1243,9 @@ struct RulesSheet: View {
 
                 Spacer()
 
-                Text("\(visibleRules.count) match\(visibleRules.count == 1 ? "" : "es") within \(Int(searchRadiusMeters))m")
+                Text(visibleRules.count == 1
+                    ? String(localized: "\(visibleRules.count) match within \(Int(searchRadiusMeters))m")
+                    : String(localized: "\(visibleRules.count) matches within \(Int(searchRadiusMeters))m"))
                     .font(.system(size: 12, weight: .semibold, design: .rounded))
                     .foregroundStyle(sweepMuted)
             }
@@ -1487,15 +1489,15 @@ struct RulesSheet: View {
 
     private var crewStatusText: String {
         if isReparking {
-            return "\(carCrew.currentMemberName) is setting the new spot"
+            return String(localized: "\(carCrew.currentMemberName) is setting the new spot")
         }
         if let moveClaim {
-            return "\(moveClaim.memberName) claimed this move"
+            return String(localized: "\(moveClaim.memberName) claimed this move")
         }
         if let lastMoveActivity {
-            return "\(lastMoveActivity.memberName) moved it \(relativeMoveTime(lastMoveActivity.movedAt))"
+            return String(localized: "\(lastMoveActivity.memberName) moved it \(relativeMoveTime(lastMoveActivity.movedAt))")
         }
-        return "\(carCrew.members.count) people get alerts"
+        return String(localized: "\(carCrew.members.count) people get alerts")
     }
 
     private func sideSelector(_ sides: [String], activeSide: String?) -> some View {
@@ -2009,14 +2011,15 @@ struct SettingsScreen: View {
 
     private var accountSubtitle: String {
         guard authentication.isAuthenticated else {
-            return "Use Auth0 to join crews and receive shared car updates."
+            return String(localized: "Use Auth0 to join crews and receive shared car updates.")
         }
 
         if authentication.convexSynced {
-            return "\(authentication.userName ?? authentication.userEmail ?? "Your account") is connected to \(carCrew.name)."
+            let accountName = authentication.userName ?? authentication.userEmail ?? String(localized: "Your account")
+            return String(localized: "\(accountName) is connected to \(carCrew.name).")
         }
 
-        return "Auth0 is connected. Waiting to sync with Convex."
+        return String(localized: "Auth0 is connected. Waiting to sync with Convex.")
     }
 
     private var notificationSection: some View {
@@ -2231,7 +2234,7 @@ struct SettingsScreen: View {
         }
     }
 
-    private func settingsGroup<Content: View>(title: String, @ViewBuilder content: () -> Content) -> some View {
+    private func settingsGroup<Content: View>(title: LocalizedStringKey, @ViewBuilder content: () -> Content) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             Text(title)
                 .font(.system(size: 13, weight: .bold, design: .rounded))
@@ -2275,7 +2278,7 @@ struct SettingsScreen: View {
             do {
                 try await authentication.updateNotificationPreferences(preferences)
             } catch {
-                authentication.errorMessage = "Notification settings sync failed: \(error.localizedDescription)"
+                authentication.errorMessage = String(localized: "Notification settings sync failed: \(error.localizedDescription)")
             }
         }
     }
@@ -2668,9 +2671,9 @@ private func formatTimeWindow(fromHour: Int, toHour: Int) -> String {
 private func formatDistance(_ meters: CLLocationDistance) -> String {
     let feet = meters * 3.28084
     if feet < 10 {
-        return "at pin"
+        return String(localized: "at pin")
     }
-    return "\(Int(feet.rounded())) ft"
+    return String(localized: "\(Int(feet.rounded())) ft")
 }
 
 private func ruleSummary(_ rule: SweepRule) -> String {
@@ -2680,13 +2683,13 @@ private func ruleSummary(_ rule: SweepRule) -> String {
 private func formatSide(_ side: String) -> String {
     switch side {
     case "NorthEast":
-        return "Northeast"
+        return String(localized: "Northeast")
     case "NorthWest":
-        return "Northwest"
+        return String(localized: "Northwest")
     case "SouthEast":
-        return "Southeast"
+        return String(localized: "Southeast")
     case "SouthWest":
-        return "Southwest"
+        return String(localized: "Southwest")
     default:
         return side
     }
@@ -2731,21 +2734,21 @@ private func formatReminderLeadTime(_ hours: Double) -> String {
 private func relativeMoveTime(_ date: Date, now: Date = Date()) -> String {
     let seconds = max(0, Int(now.timeIntervalSince(date)))
     if seconds < 60 {
-        return "just now"
+        return String(localized: "just now")
     }
 
     let minutes = seconds / 60
     if minutes < 60 {
-        return "\(minutes)m ago"
+        return String(localized: "\(minutes)m ago")
     }
 
     let hours = minutes / 60
     if hours < 24 {
-        return "\(hours)h ago"
+        return String(localized: "\(hours)h ago")
     }
 
     let days = hours / 24
-    return "\(days)d ago"
+    return String(localized: "\(days)d ago")
 }
 
 private func formatHour(_ hour: Int) -> String {
@@ -2773,12 +2776,14 @@ private func urgencyColor(_ hoursUntil: Double) -> Color {
 
 private func urgencyLabel(_ target: Date, from now: Date = Date()) -> String {
     let remainingHours = hoursUntil(target, from: now)
-    if remainingHours < 1 { return "Move your car NOW" }
-    if remainingHours < 24 { return "Street cleaning in \(Int(remainingHours.rounded()))h" }
+    if remainingHours < 1 { return String(localized: "Move your car NOW") }
+    if remainingHours < 24 {
+        return String(localized: "Street cleaning in \(Int(remainingHours.rounded()))h")
+    }
 
     let calendar = Calendar.current
     if calendar.isDateInTomorrow(target) {
-        return "Street cleaning tomorrow"
+        return String(localized: "Street cleaning tomorrow")
     }
 
     let today = calendar.startOfDay(for: now)
@@ -2786,11 +2791,12 @@ private func urgencyLabel(_ target: Date, from now: Date = Date()) -> String {
     let dayDifference = calendar.dateComponents([.day], from: today, to: targetDay).day ?? 0
     if dayDifference > 1 && dayDifference < 7 {
         let formatter = DateFormatter()
+        formatter.locale = Locale.current
         formatter.dateFormat = "EEEE"
-        return "Street cleaning \(formatter.string(from: target))"
+        return String(localized: "Street cleaning \(formatter.string(from: target))")
     }
 
-    return "Street cleaning \(formatDate(target))"
+    return String(localized: "Street cleaning \(formatDate(target))")
 }
 
 private func formatDate(_ date: Date) -> String {

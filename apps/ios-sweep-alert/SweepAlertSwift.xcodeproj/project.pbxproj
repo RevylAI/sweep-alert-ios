@@ -19,6 +19,10 @@
 		A1000010 /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000011 /* PushNotificationService.swift */; };
 		B1000001 /* SweepAlertWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2000001 /* SweepAlertWidget.swift */; };
 		B1000002 /* SweepAlertWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B2000003 /* SweepAlertWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C1000001 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C2000001 /* Localizable.xcstrings */; };
+		C1000002 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C2000001 /* Localizable.xcstrings */; };
+		C1000003 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2000002 /* InfoPlist.strings */; };
+		C1000004 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2000003 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +65,9 @@
 		B2000001 /* SweepAlertWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SweepAlertWidget.swift; sourceTree = "<group>"; };
 		B2000002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2000003 /* SweepAlertWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SweepAlertWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2000001 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		C2000002 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = InfoPlist.strings; path = pa.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C2000003 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = InfoPlist.strings; path = pa.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +112,8 @@
 				A2000006 /* Auth0.plist */,
 				A2000005 /* sweeping.json */,
 				A2000003 /* Assets.xcassets */,
+				C2000001 /* Localizable.xcstrings */,
+				C2000002 /* InfoPlist.strings */,
 			);
 			path = SweepAlertSwift;
 			sourceTree = "<group>";
@@ -123,6 +132,7 @@
 			children = (
 				B2000001 /* SweepAlertWidget.swift */,
 				B2000002 /* Info.plist */,
+				C2000003 /* InfoPlist.strings */,
 			);
 			path = SweepAlertWidget;
 			sourceTree = "<group>";
@@ -196,6 +206,7 @@
 			knownRegions = (
 				en,
 				Base,
+				pa,
 			);
 			mainGroup = A4000001;
 			packageReferences = (
@@ -219,6 +230,8 @@
 				A1000003 /* Assets.xcassets in Resources */,
 				A1000004 /* sweeping.json in Resources */,
 				A1000005 /* Auth0.plist in Resources */,
+				C1000001 /* Localizable.xcstrings in Resources */,
+				C1000003 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,6 +239,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1000002 /* Localizable.xcstrings in Resources */,
+				C1000004 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
