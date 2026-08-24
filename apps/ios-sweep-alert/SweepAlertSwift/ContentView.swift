@@ -85,11 +85,11 @@ struct SharedCarCrew {
         name: "Apartment car crew",
         carName: "Roommates' Honda",
         cars: [
-            CrewCar(id: "roommates-honda", name: "Roommates' Honda", tint: sweepBlue, colorName: "blue", activeSession: nil),
+            CrewCar(id: "roommates-honda", name: "Roommates' Honda", tint: SweepTheme.blue, colorName: "blue", activeSession: nil),
             CrewCar(id: "maya-subaru", name: "Maya's Subaru", tint: Color.green, colorName: "green", activeSession: nil)
         ],
         members: [
-            CrewMember(id: "landseer", name: "Landseer", role: "Owner", tint: sweepBlue, isCurrentUser: true),
+            CrewMember(id: "landseer", name: "Landseer", role: "Owner", tint: SweepTheme.blue, isCurrentUser: true),
             CrewMember(id: "anam", name: "Anam", role: "Can move", tint: Color.green, isCurrentUser: false),
             CrewMember(id: "maya", name: "Maya", role: "Can move", tint: Color.orange, isCurrentUser: false)
         ]
@@ -192,9 +192,6 @@ final class LocationStore: NSObject, ObservableObject, CLLocationManagerDelegate
 
 private let sfCoordinate = CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194)
 private let searchRadiusMeters: CLLocationDistance = 60
-private let sweepBlue = Color(red: 0.05, green: 0.39, blue: 0.90)
-private let sweepInk = Color(red: 0.08, green: 0.10, blue: 0.14)
-private let sweepMuted = Color(red: 0.38, green: 0.43, blue: 0.50)
 
 private let fallbackSweepSegments = [
     SweepSegment(
@@ -240,6 +237,7 @@ private enum SweepDataStore {
 
 struct ContentView: View {
     @EnvironmentObject private var authentication: AuthenticationService
+    @AppStorage("appearancePreference") private var appearancePreference = AppearancePreference.system.rawValue
     @StateObject private var locationStore = LocationStore()
     @State private var cameraPosition: MapCameraPosition = .region(
         MKCoordinateRegion(
@@ -350,6 +348,7 @@ struct ContentView: View {
             .ignoresSafeArea(edges: .bottom)
         }
         .background(Color(.systemGroupedBackground))
+        .preferredColorScheme(currentAppearance.colorScheme)
         .animation(.spring(response: 0.35, dampingFraction: 0.9), value: parkedPin != nil)
         .onAppear {
             locationStore.requestLocation()
@@ -415,6 +414,11 @@ struct ContentView: View {
         }
     }
 
+    /// Resolves the persisted appearance preference for the map home experience.
+    private var currentAppearance: AppearancePreference {
+        AppearancePreference(rawValue: appearancePreference) ?? .system
+    }
+
     private var selectedCar: CrewCar? {
         carCrew.cars.first { $0.id == selectedCarId } ?? carCrew.cars.first
     }
@@ -476,16 +480,16 @@ struct ContentView: View {
         HStack {
             Text("SweepAlert")
                 .font(.system(size: 15, weight: .bold, design: .rounded))
-                .foregroundStyle(sweepInk)
+                .foregroundStyle(SweepTheme.ink)
                 .padding(.horizontal, 11)
                 .padding(.vertical, 7)
                 .background(.ultraThinMaterial)
                 .clipShape(Capsule())
                 .overlay {
                     Capsule()
-                        .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                        .stroke(SweepTheme.cardBorder, lineWidth: 1)
                 }
-                .shadow(color: .black.opacity(0.09), radius: 12, x: 0, y: 6)
+                .shadow(color: SweepTheme.cardShadow, radius: 12, x: 0, y: 6)
                 .accessibilityIdentifier("app-title-badge")
 
             Spacer()
@@ -495,16 +499,16 @@ struct ContentView: View {
             } label: {
                 Image(systemName: "gearshape.fill")
                     .font(.system(size: 16, weight: .bold))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
                     .frame(width: 36, height: 36)
                     .background(.ultraThinMaterial)
                     .clipShape(Circle())
                     .overlay {
                         Circle()
-                            .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                            .stroke(SweepTheme.cardBorder, lineWidth: 1)
                     }
             }
-            .shadow(color: .black.opacity(0.09), radius: 12, x: 0, y: 6)
+            .shadow(color: SweepTheme.cardShadow, radius: 12, x: 0, y: 6)
             .accessibilityLabel("Open settings")
             .accessibilityIdentifier("settings-button")
         }
@@ -523,9 +527,9 @@ struct ContentView: View {
                 .foregroundStyle(.white)
                 .padding(.horizontal, 28)
                 .padding(.vertical, 14)
-                .background(sweepBlue)
+                .background(SweepTheme.blue)
                 .clipShape(Capsule())
-                .shadow(color: sweepBlue.opacity(0.30), radius: 14, x: 0, y: 8)
+                .shadow(color: SweepTheme.blue.opacity(0.30), radius: 14, x: 0, y: 8)
         }
         .accessibilityIdentifier("park-here-button")
     }
@@ -944,7 +948,7 @@ struct ContentView: View {
     }
 
     private func sharedCarCrew(from remoteCrew: RemoteCrewSnapshot) -> SharedCarCrew {
-        let palette: [Color] = [sweepBlue, Color.green, Color.orange, Color.purple, Color.teal]
+        let palette: [Color] = [SweepTheme.blue, Color.green, Color.orange, Color.purple, Color.teal]
         let members = remoteCrew.members.enumerated().map { index, member in
             CrewMember(
                 id: member.id,
@@ -1028,7 +1032,7 @@ struct RulesSheet: View {
                 } else {
                     Text("Tap the map to drop your parking pin")
                         .font(.system(size: 15, weight: .regular, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepTheme.muted)
                         .padding(.top, 24)
                         .padding(.bottom, 32)
                 }
@@ -1051,9 +1055,9 @@ struct RulesSheet: View {
         .clipShape(UnevenRoundedRectangle(topLeadingRadius: isExpanded ? 28 : 22, topTrailingRadius: isExpanded ? 28 : 22))
         .overlay(alignment: .top) {
             UnevenRoundedRectangle(topLeadingRadius: isExpanded ? 28 : 22, topTrailingRadius: isExpanded ? 28 : 22)
-                .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                .stroke(SweepTheme.cardBorder, lineWidth: 1)
         }
-        .shadow(color: .black.opacity(isExpanded ? 0.16 : 0.10), radius: isExpanded ? 20 : 14, x: 0, y: -8)
+        .shadow(color: SweepTheme.cardShadow, radius: isExpanded ? 20 : 14, x: 0, y: -8)
         .accessibilityIdentifier("rules-sheet")
         .ignoresSafeArea(edges: .bottom)
     }
@@ -1069,7 +1073,7 @@ struct RulesSheet: View {
             Button(action: onToggleExpanded) {
                 Image(systemName: "xmark")
                     .font(.system(size: 13, weight: .bold))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
                     .frame(width: 34, height: 34)
                     .background(Color(.secondarySystemBackground))
                     .clipShape(Circle())
@@ -1089,7 +1093,7 @@ struct RulesSheet: View {
                 title: "Reading curb rules",
                 subtitle: "Checking nearby sweeping schedules",
                 icon: "location.magnifyingglass",
-                color: sweepBlue
+                color: SweepTheme.blue
             )
         } else if let rules, let top = primaryRule(in: rules) {
             collapsedRow(
@@ -1120,13 +1124,13 @@ struct RulesSheet: View {
             VStack(alignment: .leading, spacing: 3) {
                 Text(title)
                     .font(.system(size: 16, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
                     .lineLimit(1)
                     .minimumScaleFactor(0.78)
 
                 Text(subtitle)
                     .font(.system(size: 12, weight: .medium, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(SweepTheme.muted)
                     .lineLimit(1)
                     .minimumScaleFactor(0.76)
             }
@@ -1135,7 +1139,7 @@ struct RulesSheet: View {
 
             Image(systemName: "chevron.up")
                 .font(.system(size: 13, weight: .bold))
-                .foregroundStyle(sweepMuted)
+                .foregroundStyle(SweepTheme.muted)
                 .frame(width: 34, height: 34)
                 .background(Color(.secondarySystemBackground))
                 .clipShape(Circle())
@@ -1149,22 +1153,22 @@ struct RulesSheet: View {
         VStack(spacing: 14) {
             ZStack {
                 Circle()
-                    .fill(sweepBlue.opacity(0.12))
+                    .fill(SweepTheme.blue.opacity(0.12))
                     .frame(width: 54, height: 54)
 
                 ProgressView()
                     .progressViewStyle(.circular)
-                    .tint(sweepBlue)
+                    .tint(SweepTheme.blue)
             }
 
             VStack(spacing: 4) {
                 Text("Reading curb rules")
                     .font(.system(size: 18, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
 
                 Text("Checking nearby SF sweeping schedules...")
                     .font(.system(size: 14, weight: .regular, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(SweepTheme.muted)
             }
         }
         .frame(minHeight: 190)
@@ -1179,11 +1183,11 @@ struct RulesSheet: View {
 
             Text("No street cleaning found")
                 .font(.system(size: 20, weight: .bold, design: .rounded))
-                .foregroundStyle(sweepInk)
+                .foregroundStyle(SweepTheme.ink)
 
             Text("No sweeping schedule found near this spot. Double-check the pin is on the street.")
                 .font(.system(size: 14, weight: .regular, design: .rounded))
-                .foregroundStyle(sweepMuted)
+                .foregroundStyle(SweepTheme.muted)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 32)
 
@@ -1215,13 +1219,13 @@ struct RulesSheet: View {
                 VStack(alignment: .leading, spacing: 5) {
                     Text(urgencyLabel(top.nextOccurrence))
                         .font(.system(size: 22, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(SweepTheme.ink)
                         .lineLimit(2)
                         .minimumScaleFactor(0.82)
 
                     Text(ruleSummary(top))
                         .font(.system(size: 14, weight: .medium, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepTheme.muted)
                         .lineLimit(1)
                         .minimumScaleFactor(0.8)
                 }
@@ -1239,13 +1243,13 @@ struct RulesSheet: View {
             HStack {
                 Text("Nearby rules")
                     .font(.system(size: 13, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
 
                 Spacer()
 
                 Text("\(visibleRules.count) match\(visibleRules.count == 1 ? "" : "es") within \(Int(searchRadiusMeters))m")
                     .font(.system(size: 12, weight: .semibold, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(SweepTheme.muted)
             }
             .padding(.horizontal, 20)
             .padding(.bottom, 8)
@@ -1272,14 +1276,14 @@ struct RulesSheet: View {
                 VStack(alignment: .leading, spacing: 3) {
                     Text(carCrew.name)
                         .font(.system(size: 13, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepTheme.muted)
                         .textCase(.uppercase)
                         .lineLimit(1)
                         .minimumScaleFactor(0.78)
 
                     Text(crewStatusText)
                         .font(.system(size: 12, weight: .semibold, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepTheme.muted)
                         .lineLimit(1)
                         .minimumScaleFactor(0.78)
                 }
@@ -1291,7 +1295,7 @@ struct RulesSheet: View {
 
                     Text("\(cars.count) car\(cars.count == 1 ? "" : "s")")
                         .font(.system(size: 12, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepTheme.muted)
                 }
             }
             .padding(.horizontal, 20)
@@ -1310,7 +1314,7 @@ struct RulesSheet: View {
                                     .font(.system(size: 13, weight: .bold, design: .rounded))
                                     .lineLimit(1)
                             }
-                            .foregroundStyle(isSelected ? .white : sweepInk)
+                            .foregroundStyle(isSelected ? .white : SweepTheme.ink)
                             .padding(.horizontal, 13)
                             .padding(.vertical, 9)
                             .background(isSelected ? car.tint : Color(.secondarySystemBackground))
@@ -1337,19 +1341,19 @@ struct RulesSheet: View {
             HStack(alignment: .center, spacing: 10) {
                 Image(systemName: "person.2.fill")
                     .font(.system(size: 14, weight: .bold))
-                    .foregroundStyle(sweepBlue)
+                    .foregroundStyle(SweepTheme.blue)
                     .frame(width: 30, height: 30)
-                    .background(sweepBlue.opacity(0.10))
+                    .background(SweepTheme.blue.opacity(0.10))
                     .clipShape(Circle())
 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(selectedCar?.name ?? carCrew.carName)
                         .font(.system(size: 14, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(SweepTheme.ink)
 
                     Text(crewStatusText)
                         .font(.system(size: 12, weight: .medium, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepTheme.muted)
                 }
 
                 Spacer(minLength: 8)
@@ -1380,9 +1384,9 @@ struct RulesSheet: View {
                         .foregroundStyle(.white)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 12)
-                        .background(sweepBlue)
+                        .background(SweepTheme.blue)
                         .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
-                        .shadow(color: sweepBlue.opacity(0.18), radius: 10, x: 0, y: 5)
+                        .shadow(color: SweepTheme.blue.opacity(0.18), radius: 10, x: 0, y: 5)
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 16)
@@ -1396,18 +1400,18 @@ struct RulesSheet: View {
             HStack(spacing: 8) {
                 Image(systemName: "mappin.circle.fill")
                     .font(.system(size: 14, weight: .bold))
-                    .foregroundStyle(sweepBlue)
+                    .foregroundStyle(SweepTheme.blue)
 
                 Text("Where is it parked now?")
                     .font(.system(size: 13, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
 
                 Spacer(minLength: 8)
             }
 
             Text("Tap the map to place a new pin, or use your current location.")
                 .font(.system(size: 12, weight: .medium, design: .rounded))
-                .foregroundStyle(sweepMuted)
+                .foregroundStyle(SweepTheme.muted)
                 .lineLimit(2)
 
             HStack(spacing: 8) {
@@ -1417,7 +1421,7 @@ struct RulesSheet: View {
                         .foregroundStyle(.white)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 10)
-                        .background(sweepBlue)
+                        .background(SweepTheme.blue)
                         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                 }
                 .accessibilityIdentifier("use-current-location-repark-button")
@@ -1425,7 +1429,7 @@ struct RulesSheet: View {
                 Button(action: onCancelRepark) {
                     Text("Cancel")
                         .font(.system(size: 13, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(SweepTheme.ink)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 10)
                         .background(Color(.systemBackground).opacity(0.78))
@@ -1435,7 +1439,7 @@ struct RulesSheet: View {
             }
         }
         .padding(12)
-        .background(sweepBlue.opacity(0.08))
+        .background(SweepTheme.blue.opacity(0.08))
         .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
         .padding(.horizontal, 16)
         .padding(.top, 12)
@@ -1449,17 +1453,17 @@ struct RulesSheet: View {
 
             Text("\(moveClaim.memberName) is moving it")
                 .font(.system(size: 13, weight: .bold, design: .rounded))
-                .foregroundStyle(sweepInk)
+                .foregroundStyle(SweepTheme.ink)
 
             Spacer(minLength: 8)
 
             Button(action: onBeginRepark) {
                 Text("Choose spot")
                     .font(.system(size: 12, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepBlue)
+                    .foregroundStyle(SweepTheme.blue)
                     .padding(.horizontal, 10)
                     .padding(.vertical, 7)
-                    .background(sweepBlue.opacity(0.10))
+                    .background(SweepTheme.blue.opacity(0.10))
                     .clipShape(Capsule())
             }
             .accessibilityIdentifier("set-spot-after-claim-button")
@@ -1503,13 +1507,13 @@ struct RulesSheet: View {
             HStack {
                 Text("Street side")
                     .font(.system(size: 13, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
 
                 Spacer()
 
                 Text(sideSelectionIsAutomatic ? "Auto-selected" : "Changed")
                     .font(.system(size: 12, weight: .semibold, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(SweepTheme.muted)
             }
             .padding(.horizontal, 20)
 
@@ -1522,14 +1526,14 @@ struct RulesSheet: View {
                         } label: {
                             Text(formatSide(side))
                                 .font(.system(size: 13, weight: .bold, design: .rounded))
-                                .foregroundStyle(isSelected ? .white : sweepInk)
+                                .foregroundStyle(isSelected ? .white : SweepTheme.ink)
                                 .padding(.horizontal, 14)
                                 .padding(.vertical, 9)
-                                .background(isSelected ? sweepBlue : Color(.systemBackground).opacity(0.82))
+                                .background(isSelected ? SweepTheme.blue : Color(.systemBackground).opacity(0.82))
                                 .clipShape(Capsule())
                                 .overlay {
                                     Capsule()
-                                        .stroke(isSelected ? sweepBlue : Color(.separator).opacity(0.4), lineWidth: 0.75)
+                                        .stroke(isSelected ? SweepTheme.blue : Color(.separator).opacity(0.4), lineWidth: 0.75)
                                 }
                         }
                         .buttonStyle(.plain)
@@ -1547,9 +1551,9 @@ struct RulesSheet: View {
                 .foregroundStyle(.white)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 12)
-                .background(sweepBlue)
+                .background(SweepTheme.blue)
                 .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
-                .shadow(color: sweepBlue.opacity(0.18), radius: 10, x: 0, y: 5)
+                .shadow(color: SweepTheme.blue.opacity(0.18), radius: 10, x: 0, y: 5)
         }
         .padding(.horizontal, 20)
         .padding(.top, 16)
@@ -1567,13 +1571,13 @@ struct ReparkMapControls: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text("Set \(carName)'s new spot")
                     .font(.system(size: 14, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
                     .lineLimit(1)
                     .minimumScaleFactor(0.8)
 
                 Text("Tap the map or use current location")
                     .font(.system(size: 12, weight: .medium, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(SweepTheme.muted)
                     .lineLimit(1)
             }
 
@@ -1584,7 +1588,7 @@ struct ReparkMapControls: View {
                     .font(.system(size: 14, weight: .bold))
                     .foregroundStyle(.white)
                     .frame(width: 38, height: 38)
-                    .background(sweepBlue)
+                    .background(SweepTheme.blue)
                     .clipShape(Circle())
             }
             .accessibilityLabel("Use current location")
@@ -1593,7 +1597,7 @@ struct ReparkMapControls: View {
             Button(action: onCancel) {
                 Image(systemName: "xmark")
                     .font(.system(size: 13, weight: .bold))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
                     .frame(width: 38, height: 38)
                     .background(Color(.systemBackground))
                     .clipShape(Circle())
@@ -1606,9 +1610,9 @@ struct ReparkMapControls: View {
         .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: 18, style: .continuous)
-                .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                .stroke(SweepTheme.cardBorder, lineWidth: 1)
         }
-        .shadow(color: .black.opacity(0.14), radius: 16, x: 0, y: 8)
+        .shadow(color: SweepTheme.cardShadow, radius: 16, x: 0, y: 8)
     }
 }
 
@@ -1622,19 +1626,19 @@ struct SignedOutPanel: View {
             HStack(alignment: .center, spacing: 12) {
                 Image(systemName: "person.2.badge.key.fill")
                     .font(.system(size: 18, weight: .bold))
-                    .foregroundStyle(sweepBlue)
+                    .foregroundStyle(SweepTheme.blue)
                     .frame(width: 42, height: 42)
-                    .background(sweepBlue.opacity(0.12))
+                    .background(SweepTheme.blue.opacity(0.12))
                     .clipShape(Circle())
 
                 VStack(alignment: .leading, spacing: 3) {
-                    Text("Create your car crew")
+                    Text("Create a shared car crew")
                         .font(.system(size: 18, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(SweepTheme.ink)
 
                     Text("Sign in to save cars, share invite links, and sync alerts.")
                         .font(.system(size: 13, weight: .medium, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepTheme.muted)
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }
@@ -1666,7 +1670,7 @@ struct SignedOutPanel: View {
                 Button(action: onOpenSettings) {
                     Image(systemName: "gearshape.fill")
                         .font(.system(size: 15, weight: .bold))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(SweepTheme.ink)
                         .frame(width: 46, height: 46)
                         .background(Color(.secondarySystemBackground))
                         .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
@@ -1680,9 +1684,9 @@ struct SignedOutPanel: View {
         .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: 22, style: .continuous)
-                .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                .stroke(SweepTheme.cardBorder, lineWidth: 1)
         }
-        .shadow(color: .black.opacity(0.14), radius: 18, x: 0, y: 8)
+        .shadow(color: SweepTheme.cardShadow, radius: 18, x: 0, y: 8)
     }
 }
 
@@ -1694,19 +1698,19 @@ struct EmptyCrewPanel: View {
         HStack(spacing: 12) {
             Image(systemName: "car.2.fill")
                 .font(.system(size: 18, weight: .bold))
-                .foregroundStyle(sweepBlue)
+                .foregroundStyle(SweepTheme.blue)
                 .frame(width: 42, height: 42)
-                .background(sweepBlue.opacity(0.12))
+                .background(SweepTheme.blue.opacity(0.12))
                 .clipShape(Circle())
 
             VStack(alignment: .leading, spacing: 3) {
                 Text(crewName)
                     .font(.system(size: 18, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
 
                 Text("Add a car in settings to start tracking parking spots.")
                     .font(.system(size: 13, weight: .medium, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(SweepTheme.muted)
                     .fixedSize(horizontal: false, vertical: true)
             }
 
@@ -1717,7 +1721,7 @@ struct EmptyCrewPanel: View {
                     .font(.system(size: 15, weight: .bold))
                     .foregroundStyle(.white)
                     .frame(width: 42, height: 42)
-                    .background(sweepBlue)
+                    .background(SweepTheme.blue)
                     .clipShape(Circle())
             }
             .accessibilityLabel("Add a car")
@@ -1728,9 +1732,9 @@ struct EmptyCrewPanel: View {
         .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: 22, style: .continuous)
-                .stroke(Color.white.opacity(0.58), lineWidth: 1)
+                .stroke(SweepTheme.cardBorder, lineWidth: 1)
         }
-        .shadow(color: .black.opacity(0.14), radius: 18, x: 0, y: 8)
+        .shadow(color: SweepTheme.cardShadow, radius: 18, x: 0, y: 8)
     }
 }
 
@@ -1744,7 +1748,7 @@ struct CarMapMarker: View {
                 Circle()
                     .fill(Color(.systemBackground))
                     .frame(width: isSelected ? 44 : 38, height: isSelected ? 44 : 38)
-                    .shadow(color: .black.opacity(0.18), radius: 8, x: 0, y: 4)
+                    .shadow(color: SweepTheme.cardShadow, radius: 8, x: 0, y: 4)
 
                 Circle()
                     .fill(car.tint)
@@ -1756,18 +1760,18 @@ struct CarMapMarker: View {
             }
             .overlay {
                 Circle()
-                    .stroke(isSelected ? sweepInk.opacity(0.18) : Color.clear, lineWidth: 3)
+                    .stroke(isSelected ? SweepTheme.ink.opacity(0.18) : Color.clear, lineWidth: 3)
             }
 
             Text(car.name)
                 .font(.system(size: 11, weight: .bold, design: .rounded))
-                .foregroundStyle(sweepInk)
+                .foregroundStyle(SweepTheme.ink)
                 .lineLimit(1)
                 .padding(.horizontal, 7)
                 .padding(.vertical, 4)
                 .background(Color(.systemBackground).opacity(0.92))
                 .clipShape(Capsule())
-                .shadow(color: .black.opacity(0.10), radius: 6, x: 0, y: 3)
+                .shadow(color: SweepTheme.cardShadow, radius: 6, x: 0, y: 3)
         }
         .accessibilityLabel("\(car.name) parking marker")
     }
@@ -1782,20 +1786,20 @@ struct RuleRow: View {
                 HStack(spacing: 8) {
                     Image(systemName: "road.lanes")
                         .font(.system(size: 14, weight: .semibold))
-                        .foregroundStyle(sweepBlue)
+                        .foregroundStyle(SweepTheme.blue)
                         .frame(width: 24, height: 24)
-                        .background(sweepBlue.opacity(0.11))
+                        .background(SweepTheme.blue.opacity(0.11))
                         .clipShape(Circle())
 
                     VStack(alignment: .leading, spacing: 2) {
                         Text(rule.segment.corridor)
                             .font(.system(size: 15, weight: .bold, design: .rounded))
-                            .foregroundStyle(sweepInk)
+                            .foregroundStyle(SweepTheme.ink)
                             .lineLimit(1)
 
                         Text(rule.segment.limits)
                             .font(.system(size: 12, weight: .medium, design: .rounded))
-                            .foregroundStyle(sweepMuted)
+                            .foregroundStyle(SweepTheme.muted)
                             .lineLimit(1)
                     }
                 }
@@ -1811,12 +1815,12 @@ struct RuleRow: View {
             VStack(alignment: .trailing, spacing: 5) {
                 Text(rule.segment.schedule)
                     .font(.system(size: 13, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
                     .lineLimit(1)
 
                 Text(formatTimeWindow(fromHour: rule.segment.fromHour, toHour: rule.segment.toHour))
                     .font(.system(size: 12, weight: .semibold, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(SweepTheme.muted)
 
                 Text(formatDate(rule.nextOccurrence))
                     .font(.system(size: 12, weight: .bold, design: .rounded))
@@ -1835,7 +1839,7 @@ struct RuleRow: View {
     private func rowPill(_ title: String, systemImage: String) -> some View {
         Label(title, systemImage: systemImage)
             .font(.system(size: 11, weight: .semibold, design: .rounded))
-            .foregroundStyle(sweepMuted)
+            .foregroundStyle(SweepTheme.muted)
             .padding(.horizontal, 7)
             .padding(.vertical, 4)
             .background(Color(.secondarySystemBackground))
@@ -1856,6 +1860,7 @@ struct SettingsScreen: View {
     @State private var crewNameDraft = ""
     @State private var newCarName = ""
     @State private var carNameDrafts: [String: String] = [:]
+    @AppStorage("appearancePreference") private var appearancePreference = AppearancePreference.system.rawValue
 
     var body: some View {
         VStack(spacing: 0) {
@@ -1864,6 +1869,7 @@ struct SettingsScreen: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 22) {
                     header
+                    appearanceSection
                     accountSection
                     if authentication.isAuthenticated {
                         notificationSection
@@ -1891,7 +1897,7 @@ struct SettingsScreen: View {
             Button(action: onClose) {
                 Image(systemName: "chevron.left")
                     .font(.system(size: 17, weight: .bold))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
                     .frame(width: 40, height: 40)
                     .background(Color(.systemBackground))
                     .clipShape(Circle())
@@ -1907,7 +1913,7 @@ struct SettingsScreen: View {
 
             Text("Settings")
                 .font(.system(size: 17, weight: .bold, design: .rounded))
-                .foregroundStyle(sweepInk)
+                .foregroundStyle(SweepTheme.ink)
 
             Spacer()
 
@@ -1917,7 +1923,7 @@ struct SettingsScreen: View {
                         .font(.system(size: 16, weight: .bold))
                         .foregroundStyle(.white)
                         .frame(width: 40, height: 40)
-                        .background(sweepBlue)
+                        .background(SweepTheme.blue)
                         .clipShape(Circle())
                 }
                 .accessibilityLabel("Share invite link")
@@ -1936,11 +1942,11 @@ struct SettingsScreen: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text("Settings")
                     .font(.system(size: 28, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
 
                 Text("Manage your crew, cars, shared alerts, and who can move them.")
                     .font(.system(size: 14, weight: .medium, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(SweepTheme.muted)
                     .fixedSize(horizontal: false, vertical: true)
             }
 
@@ -1948,24 +1954,56 @@ struct SettingsScreen: View {
         }
     }
 
+    private var appearanceSection: some View {
+        settingsGroup(title: "Appearance") {
+            VStack(alignment: .leading, spacing: 10) {
+                Text("Choose how SweepAlert looks on this device.")
+                    .font(.system(size: 12, weight: .medium, design: .rounded))
+                    .foregroundStyle(SweepTheme.muted)
+
+                HStack(spacing: 8) {
+                    ForEach(AppearancePreference.allCases) { option in
+                        appearanceButton(option)
+                    }
+                }
+            }
+        }
+    }
+
+    private func appearanceButton(_ option: AppearancePreference) -> some View {
+        let selected = appearancePreference == option.rawValue
+        return Button {
+            appearancePreference = option.rawValue
+        } label: {
+            Text(option.label)
+                .font(.system(size: 13, weight: .bold, design: .rounded))
+                .foregroundStyle(selected ? .white : SweepTheme.ink)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 9)
+                .background(selected ? SweepTheme.blue : Color(.secondarySystemBackground))
+                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+        }
+        .accessibilityIdentifier("appearance-\(option.rawValue)-button")
+    }
+
     private var accountSection: some View {
         settingsGroup(title: "Account") {
             HStack(spacing: 12) {
                 Image(systemName: authentication.isAuthenticated ? "checkmark.seal.fill" : "person.crop.circle.badge.plus")
                     .font(.system(size: 18, weight: .bold))
-                    .foregroundStyle(authentication.isAuthenticated ? Color.green : sweepBlue)
+                    .foregroundStyle(authentication.isAuthenticated ? Color.green : SweepTheme.blue)
                     .frame(width: 34, height: 34)
-                    .background((authentication.isAuthenticated ? Color.green : sweepBlue).opacity(0.10))
+                    .background((authentication.isAuthenticated ? Color.green : SweepTheme.blue).opacity(0.10))
                     .clipShape(Circle())
 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(authentication.isAuthenticated ? "Signed in with Auth0" : "Sign in to sync alerts")
                         .font(.system(size: 14, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(SweepTheme.ink)
 
                     Text(accountSubtitle)
                         .font(.system(size: 12, weight: .medium, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepTheme.muted)
                         .lineLimit(2)
                 }
 
@@ -1986,10 +2024,10 @@ struct SettingsScreen: View {
                     } label: {
                         Text(authentication.isAuthenticated ? "Log out" : "Log in")
                             .font(.system(size: 13, weight: .bold, design: .rounded))
-                            .foregroundStyle(authentication.isAuthenticated ? sweepInk : .white)
+                            .foregroundStyle(authentication.isAuthenticated ? SweepTheme.ink : .white)
                             .padding(.horizontal, 12)
                             .padding(.vertical, 8)
-                            .background(authentication.isAuthenticated ? Color(.secondarySystemBackground) : sweepBlue)
+                            .background(authentication.isAuthenticated ? Color(.secondarySystemBackground) : SweepTheme.blue)
                             .clipShape(Capsule())
                     }
                     .accessibilityIdentifier(authentication.isAuthenticated ? "logout-button" : "login-button")
@@ -2034,7 +2072,7 @@ struct SettingsScreen: View {
             VStack(alignment: .leading, spacing: 10) {
                 Text("First reminder")
                     .font(.system(size: 13, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
 
                 HStack(spacing: 8) {
                     reminderButton(hours: 6)
@@ -2050,19 +2088,19 @@ struct SettingsScreen: View {
             HStack(spacing: 12) {
                 Image(systemName: "lock.fill")
                     .font(.system(size: 16, weight: .bold))
-                    .foregroundStyle(sweepBlue)
+                    .foregroundStyle(SweepTheme.blue)
                     .frame(width: 34, height: 34)
-                    .background(sweepBlue.opacity(0.10))
+                    .background(SweepTheme.blue.opacity(0.10))
                     .clipShape(Circle())
 
                 VStack(alignment: .leading, spacing: 2) {
                     Text("Sign in to manage cars")
                         .font(.system(size: 14, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(SweepTheme.ink)
 
                     Text("Crew names, invite links, cars, and push alerts are stored after login.")
                         .font(.system(size: 12, weight: .medium, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepTheme.muted)
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }
@@ -2074,7 +2112,7 @@ struct SettingsScreen: View {
             VStack(alignment: .leading, spacing: 10) {
                 Text("Group name")
                     .font(.system(size: 12, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(SweepTheme.muted)
 
                 HStack(spacing: 8) {
                     TextField("Crew name", text: $crewNameDraft)
@@ -2092,7 +2130,7 @@ struct SettingsScreen: View {
                             .font(.system(size: 13, weight: .bold))
                             .foregroundStyle(.white)
                             .frame(width: 36, height: 36)
-                            .background(sweepBlue)
+                            .background(SweepTheme.blue)
                             .clipShape(Circle())
                     }
                     .accessibilityLabel("Save crew name")
@@ -2105,13 +2143,13 @@ struct SettingsScreen: View {
                 HStack {
                     Text("Cars")
                         .font(.system(size: 12, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepTheme.muted)
 
                     Spacer()
 
                     Text("\(carCrew.cars.count)")
                         .font(.system(size: 12, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepTheme.muted)
                 }
 
                 ForEach(carCrew.cars) { car in
@@ -2139,9 +2177,9 @@ struct SettingsScreen: View {
                         } label: {
                             Image(systemName: "checkmark")
                                 .font(.system(size: 12, weight: .bold))
-                                .foregroundStyle(sweepBlue)
+                                .foregroundStyle(SweepTheme.blue)
                                 .frame(width: 34, height: 34)
-                                .background(sweepBlue.opacity(0.10))
+                                .background(SweepTheme.blue.opacity(0.10))
                                 .clipShape(Circle())
                         }
                         .accessibilityLabel("Save \(car.name)")
@@ -2167,7 +2205,7 @@ struct SettingsScreen: View {
                             .font(.system(size: 13, weight: .bold))
                             .foregroundStyle(.white)
                             .frame(width: 36, height: 36)
-                            .background(sweepBlue)
+                            .background(SweepTheme.blue)
                             .clipShape(Circle())
                     }
                     .accessibilityLabel("Add car")
@@ -2180,11 +2218,11 @@ struct SettingsScreen: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text("Members")
                         .font(.system(size: 15, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepInk)
+                        .foregroundStyle(SweepTheme.ink)
 
                     Text("\(carCrew.members.count) members can receive alerts")
                         .font(.system(size: 12, weight: .medium, design: .rounded))
-                        .foregroundStyle(sweepMuted)
+                        .foregroundStyle(SweepTheme.muted)
                 }
 
                 Spacer()
@@ -2192,7 +2230,7 @@ struct SettingsScreen: View {
                 Button(action: onInviteCrew) {
                     Label("Invite", systemImage: "link")
                         .font(.system(size: 13, weight: .bold, design: .rounded))
-                        .foregroundStyle(sweepBlue)
+                        .foregroundStyle(SweepTheme.blue)
                 }
                 .accessibilityIdentifier("settings-invite-button")
             }
@@ -2211,11 +2249,11 @@ struct SettingsScreen: View {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(member.isCurrentUser ? "\(member.name) (you)" : member.name)
                             .font(.system(size: 14, weight: .bold, design: .rounded))
-                            .foregroundStyle(sweepInk)
+                            .foregroundStyle(SweepTheme.ink)
 
                         Text(member.role)
                             .font(.system(size: 12, weight: .medium, design: .rounded))
-                            .foregroundStyle(sweepMuted)
+                            .foregroundStyle(SweepTheme.muted)
                     }
 
                     Spacer()
@@ -2235,7 +2273,7 @@ struct SettingsScreen: View {
         VStack(alignment: .leading, spacing: 12) {
             Text(title)
                 .font(.system(size: 13, weight: .bold, design: .rounded))
-                .foregroundStyle(sweepMuted)
+                .foregroundStyle(SweepTheme.muted)
                 .textCase(.uppercase)
 
             VStack(alignment: .leading, spacing: 12) {
@@ -2258,10 +2296,10 @@ struct SettingsScreen: View {
         } label: {
             Text(formatReminderLeadTime(hours))
                 .font(.system(size: 13, weight: .bold, design: .rounded))
-                .foregroundStyle(selected ? .white : sweepInk)
+                .foregroundStyle(selected ? .white : SweepTheme.ink)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 9)
-                .background(selected ? sweepBlue : Color(.secondarySystemBackground))
+                .background(selected ? SweepTheme.blue : Color(.secondarySystemBackground))
             .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
         }
     }
@@ -2294,20 +2332,20 @@ struct InviteSheet: View {
 
             Image(systemName: "person.badge.plus.fill")
                 .font(.system(size: 34, weight: .bold))
-                .foregroundStyle(sweepBlue)
+                .foregroundStyle(SweepTheme.blue)
                 .frame(width: 70, height: 70)
-                .background(sweepBlue.opacity(0.12))
+                .background(SweepTheme.blue.opacity(0.12))
                 .clipShape(Circle())
 
             VStack(spacing: 6) {
                 Text("Invite to \(carCrew.name)")
                     .font(.system(size: 24, weight: .bold, design: .rounded))
-                    .foregroundStyle(sweepInk)
+                    .foregroundStyle(SweepTheme.ink)
                     .multilineTextAlignment(.center)
 
                 Text("Anyone with the app can join this crew and help manage every car.")
                     .font(.system(size: 14, weight: .medium, design: .rounded))
-                    .foregroundStyle(sweepMuted)
+                    .foregroundStyle(SweepTheme.muted)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 28)
             }
@@ -2318,7 +2356,7 @@ struct InviteSheet: View {
                     .foregroundStyle(.white)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 13)
-                    .background(sweepBlue)
+                    .background(SweepTheme.blue)
                     .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
             }
             .padding(.horizontal, 24)
@@ -2701,7 +2739,7 @@ private func memberInitials(_ name: String) -> String {
 private func colorForCarName(_ name: String, fallbackIndex: Int) -> Color {
     switch name {
     case "blue":
-        return sweepBlue
+        return SweepTheme.blue
     case "green":
         return Color.green
     case "orange":
@@ -2711,7 +2749,7 @@ private func colorForCarName(_ name: String, fallbackIndex: Int) -> Color {
     case "teal":
         return Color.teal
     default:
-        let palette: [Color] = [sweepBlue, Color.green, Color.orange, Color.purple, Color.teal]
+        let palette: [Color] = [SweepTheme.blue, Color.green, Color.orange, Color.purple, Color.teal]
         return palette[fallbackIndex % palette.count]
     }
 }
