@@ -1632,7 +1632,7 @@ struct SignedOutPanel: View {
                     .clipShape(Circle())
 
                 VStack(alignment: .leading, spacing: 3) {
-                    Text("Create your car crew")
+                    Text("Create your shared car crew")
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundStyle(SweepTheme.ink)
 
