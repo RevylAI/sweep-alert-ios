@@ -192,7 +192,7 @@ final class LocationStore: NSObject, ObservableObject, CLLocationManagerDelegate
 
 private let sfCoordinate = CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194)
 private let searchRadiusMeters: CLLocationDistance = 60
-private let sweepBlue = Color(red: 0.05, green: 0.39, blue: 0.90)
+private let sweepBlue = Color(red: 0.12, green: 0.48, blue: 0.96)
 private let sweepInk = Color(red: 0.08, green: 0.10, blue: 0.14)
 private let sweepMuted = Color(red: 0.38, green: 0.43, blue: 0.50)
 
